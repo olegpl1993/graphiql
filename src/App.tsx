@@ -2,6 +2,7 @@ import './App.scss';
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Main from './pages/Main/Main';
 import Header from './components/Header/Header';
 import store from './store/store';
@@ -19,6 +20,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/graphiql" element={<Graphiql />} />
+              <Route path="*" element={<PageNotFound />} />
             </Routes>
           </div>
           <div className="footerBox">Footer 2023</div>
