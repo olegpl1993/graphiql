@@ -1,5 +1,5 @@
+import './Modal.scss';
 import { createPortal } from 'react-dom';
-import './modal.css';
 import React, { useEffect } from 'react';
 
 const modalRootElement = document.getElementById('modal') as HTMLElement;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 function Modal(props: Props) {
-  const { modalActiv, setModalActiv } = props;
+  const { modalActiv, setModalActiv, children } = props;
   const element = document.createElement('div');
 
   useEffect(() => {
@@ -27,8 +27,13 @@ function Modal(props: Props) {
     return createPortal(
       <div className="modalWrapper" onClick={() => setModalActiv(false)}>
         <div className="modalBox" onClick={(event) => event.stopPropagation()}>
-          <button className="modalClose" onClick={() => setModalActiv(false)} />
-          {props.children}
+          <button
+            type="button"
+            aria-label="Close"
+            className="modalClose"
+            onClick={() => setModalActiv(false)}
+          />
+          {children}
         </div>
       </div>,
       element
