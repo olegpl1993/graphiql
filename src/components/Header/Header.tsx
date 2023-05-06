@@ -6,9 +6,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Modal from '../../components/Modal/Modal';
-import Signin from '../../components/Signin/Signin';
-import Signup from '../../components/Signup/Signup';
+import Modal from '../Modal/Modal';
+import Signin from '../Signin/Signin';
+import Signup from '../Signup/Signup';
 
 function Header() {
   const [lang, setLeng] = useState('en');
