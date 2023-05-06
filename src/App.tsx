@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Main from './pages/Main/Main';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import store from './store/store';
 import Graphiql from './pages/Graphiql/Graphiql';
 
@@ -23,7 +24,9 @@ function App() {
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </div>
-          <div className="footerBox">Footer 2023</div>
+          <div className="footerBox">
+            <Footer />
+          </div>
         </div>
       </HashRouter>
     </Provider>
