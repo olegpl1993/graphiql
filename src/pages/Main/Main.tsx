@@ -1,8 +1,119 @@
 import './Main.scss';
 import React from 'react';
+import { Avatar } from '@mui/material';
+import ava1 from '../../assets/ava1.jpg';
 
 function Main() {
-  return <div className="main">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem adipisci dicta ea? Illum nostrum atque, libero iusto fugit corporis doloribus repellendus, nulla vel minima est recusandae ipsam sed qui neque quaerat, eius amet voluptas optio commodi molestiae rem? Error recusandae quidem cupiditate molestiae perferendis nemo natus repellendus sit unde aperiam debitis accusamus accusantium doloribus expedita labore reiciendis, quos delectus aut odit cumque corporis ea possimus. Minus dignissimos quasi et eos libero sit ut doloribus blanditiis repellendus dolores, sunt ad accusamus dolorem odit. Obcaecati voluptate ea, corporis debitis minus eius explicabo est! Architecto magnam cumque optio consectetur minima asperiores quas nulla numquam, non libero esse, iure error illum amet ipsa at hic, alias quia dolorum ipsum quo itaque unde qui? Fugiat veritatis ea velit dolorem dignissimos blanditiis aspernatur officiis vero nisi saepe deleniti repellendus, incidunt aperiam corrupti cupiditate libero, possimus aliquid alias fuga reiciendis. Alias repellendus, a fugit inventore quas nisi nemo perspiciatis quasi id autem expedita placeat quia, deserunt facere eum maiores eaque! Facere suscipit illo quaerat ea minima asperiores? Provident aliquid quibusdam pariatur, officiis consequatur dolor quo numquam ipsum eligendi aperiam impedit culpa ratione cupiditate nihil voluptatem consectetur iusto corrupti quos voluptatibus. Cumque corrupti laborum impedit dolorem quia pariatur aperiam repudiandae quaerat, aliquam officiis suscipit est dolorum a aut necessitatibus sunt neque, tenetur consequuntur inventore debitis explicabo dolore iusto. Ab tempora vel nesciunt at amet dolorem est ad quisquam praesentium adipisci illum, neque nihil! Error dolores laudantium exercitationem placeat eligendi recusandae possimus! Asperiores illum magnam id obcaecati laudantium, adipisci officia vero numquam provident maxime dicta molestias magni. Numquam quasi repellat laboriosam tempore voluptatem at laborum harum aspernatur quae eos ea assumenda earum aliquid animi quo quis soluta commodi doloremque nisi, aperiam rem cumque. Adipisci libero labore consectetur voluptas! Amet, laudantium voluptatibus? In impedit itaque cupiditate magni similique laboriosam, dolor doloribus ratione quos iste dicta? Libero, quam fugit laudantium tempore doloremque eaque, nulla iure, ut vero totam culpa harum laborum natus minima asperiores consequatur? Ab eius at suscipit. Possimus tempora, eum at quasi aut commodi sint incidunt molestiae ullam cum! Autem quae laudantium at facilis, expedita quod neque culpa voluptates, reiciendis assumenda corporis repudiandae odio fugiat quam atque veniam inventore doloribus necessitatibus dolorem nihil pariatur delectus nesciunt! Ex soluta quasi nulla quod quas est natus distinctio iure labore quisquam ipsa fugit eveniet, laudantium minus quia aspernatur iste! Animi fugiat cumque et, magnam autem ratione nisi assumenda omnis eius, repellendus non ducimus aperiam perspiciatis, perferendis laboriosam consequatur reprehenderit illo! Quaerat, cupiditate numquam. Tempora, sint voluptate veritatis eaque laudantium dolorum unde, laboriosam fuga debitis veniam consectetur pariatur blanditiis optio totam harum sequi rerum cupiditate reprehenderit incidunt saepe architecto. Accusamus repellat maiores deserunt incidunt, minima eum dicta corporis vero pariatur reprehenderit repellendus fugiat explicabo saepe voluptatibus repudiandae! Cupiditate quos qui praesentium, neque doloribus reprehenderit quas voluptas accusantium dolorem ad est tempore iste officiis, rerum sapiente earum vero harum unde? Enim unde nobis, minima, eveniet vero veniam commodi voluptates repudiandae adipisci, impedit tempore quos reprehenderit itaque ex. Corrupti, dolorem enim modi nulla rerum inventore.</div>;
+  return (
+    <div className="main">
+      <section className="about">
+        <h1 className="title">GraphiQL is a playground/IDE for graphQL requests.</h1>
+        <div className="text">Technologies that were used in the development process:</div>
+        <ul className="list">
+          <li>- TypeScript</li>
+          <li>- HTML / CSS / SASS(SCSS) </li>
+          <li>- React / Redux toolkit</li>
+          <li>- NPM / VITE</li>
+          <li>- Git / GitHub</li>
+          <li>- Material-UI / React-hook-form</li>
+        </ul>
+      </section>
+
+      <section className="developers">
+        <h2 className="title">Developers</h2>
+        <div className="text">
+          This app is the final project of React Course - The Rolling Scopes School. The project was
+          developed by a team of three students.
+        </div>
+        <div className="row">
+          <div className="developer">
+            <img src={ava1} alt="logoVape" height={200} />
+            <div className="col">
+              <div className="position">Team Lead</div>
+              <div className="name">Oleh Pluhatyrov</div>
+            </div>
+            <div className="col">
+              <div className="contribution">Contribution to the project:</div>
+              <ul>
+                <li>- Architecture development</li>
+                <li>- Workflow organization</li>
+                <li>- Meetings</li>
+                <li>- Distribution of tasks</li>
+                <li>- Code review</li>
+                <li>- Programming</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="developer">
+            <Avatar src="/broken-image.jpg" sx={{ height: [200], width: [200] }} />
+            <div className="col">
+              <div className="position">Frontend Developer</div>
+              <div className="name">Maryia Pashkovich</div>
+            </div>
+            <div className="col">
+              <div className="contribution">Contribution to the project:</div>
+              <ul className="contrList">
+                <li>- Architecture development</li>
+                <li>- Workflow organization</li>
+                <li>- Meetings</li>
+                <li>- Distribution of tasks</li>
+                <li>- Code review</li>
+                <li>- Programming</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="developer">
+            <Avatar src="/broken-image.jpg" sx={{ height: [200], width: [200] }} />
+            <div className="col">
+              <div className="position">Frontend Developer</div>
+              <div className="name">Dzmitry Shiwe</div>
+            </div>
+            <div className="col">
+              <div className="contribution">Contribution to the project:</div>
+              <ul>
+                <li>- Architecture development</li>
+                <li>- Workflow organization</li>
+                <li>- Meetings</li>
+                <li>- Distribution of tasks</li>
+                <li>- Code review</li>
+                <li>- Programming</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="rss">
+        <h2 className="title">The Rolling Scopes School</h2>
+        <div className="text">
+          RS School is free-of-charge and community-based education program conducted by The Rolling
+          Scopes developer community since 2013. Everyone can study at RS School, regardless of age,
+          professional employment, or place of residence.
+        </div>
+      </section>
+
+      <section className="course">
+        <h2 className="title">React Course</h2>
+        <div className="text">
+          React Course Students of the RS School from the 2022Q3, which has passed RS School Stage
+          #2 as well as new students with practical experience and knowledge of:
+        </div>
+        <ul className="list">
+          <li>- JavaScript</li>
+          <li>- TypeScript</li>
+          <li>
+            - Git, GitHub (clone, add, commit, push, pull, merge, rebase, working with Pull Request)
+          </li>
+          <li>- NPM, Webpack</li>
+          <li>- CSS3 / HTML5</li>
+          <li>- Chrome DevTools, Figma</li>
+          <li>- Understanding of the REST</li>
+        </ul>
+      </section>
+    </div>
+  );
 }
 
 export default Main;
