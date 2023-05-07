@@ -1,5 +1,7 @@
 import './Header.scss';
 import React from 'react';
+import { Button } from '@mui/material';
+// import { LinkProps } from '@mui/material/Link';
 import { NavLink } from 'react-router-dom';
 
 function Header() {
@@ -15,11 +17,15 @@ function Header() {
         <NavLink to="/graphiql">Graphiql</NavLink>
       </nav>
       <div className="btnRow">
-        <button type="button" onClick={handleChangeLang}>
+        <Button variant="contained" type="button" onClick={handleChangeLang}>
           Change lang
-        </button>
-        <button type="button">Sign In</button>
-        <button type="button">Sign Up</button>
+        </Button>
+        <Button variant="contained" color="secondary" type="button">
+          Sign In
+        </Button>
+        <Button variant="contained" color="success" type="button">
+          Sign Up
+        </Button>
       </div>
     </div>
   );
