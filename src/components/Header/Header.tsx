@@ -1,19 +1,34 @@
 import './Header.scss';
 import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useAppSelector } from '../../hook';
 import Modal from '../Modal/Modal';
 import Signin from '../Signin/Signin';
 import Signup from '../Signup/Signup';
+import LangSelect from '../LangSelect/LangSelect';
 
 function Header() {
-  const [lang, setLeng] = useState('en');
-  const handleChangeLang = (event: SelectChangeEvent) => {
-    setLeng(event.target.value as string);
+  // lang -------------------------------------------------------------------
+  const lang = useAppSelector((state) => state.langState.lang);
+  interface TextKey {
+    signin: string;
+    signup: string;
+  }
+  interface Text {
+    [key: string]: TextKey;
+  }
+  const text: Text = {
+    en: {
+      signin: 'sign in',
+      signup: 'sign up',
+    },
+    ru: {
+      signin: 'войти',
+      signup: 'регистрация',
+    },
   };
+  // ----------------------------------------------------------------------------
 
   const [scrollPos, setScrollPos] = useState(window.pageYOffset);
   window.addEventListener('scroll', () => {
@@ -37,22 +52,7 @@ function Header() {
       )}
       <div className={scrollPos ? 'header _scroll' : 'header'}>
         <div className="row">
-          <Box sx={{ minWidth: 50 }}>
-            <FormControl fullWidth size="small" variant="standard">
-              <Select
-                sx={{ fontSize: 18, textAlign: 'center' }}
-                value={lang}
-                onChange={handleChangeLang}
-              >
-                <MenuItem value="en" sx={{ fontSize: 16 }}>
-                  en
-                </MenuItem>
-                <MenuItem value="ru" sx={{ fontSize: 16 }}>
-                  ru
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
+          <LangSelect />
           <nav className="navigation">
             <Button variant="text">
               <NavLink to="/">Main</NavLink>
@@ -64,10 +64,10 @@ function Header() {
         </div>
         <div className="row">
           <Button variant="contained" onClick={() => setSigninModalActiv(true)}>
-            Sign In
+            {text[lang].signin}
           </Button>
           <Button variant="contained" onClick={() => setSignupModalActiv(true)}>
-            Sign Up
+            {text[lang].signup}
           </Button>
         </div>
       </div>

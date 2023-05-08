@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Languages } from '../types';
 
 const langSlice = createSlice({
   name: 'lang',
@@ -6,8 +7,7 @@ const langSlice = createSlice({
     lang: 'en',
   },
   reducers: {
-    changeLang(state, action: PayloadAction<string>) {
-      // eslint-disable-next-line no-param-reassign
+    changeLang(state, action: PayloadAction<Languages>) {
       state.lang = action.payload;
     },
   },
