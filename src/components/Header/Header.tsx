@@ -2,7 +2,6 @@ import './Header.scss';
 import React, { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
@@ -38,18 +37,19 @@ function Header() {
       )}
       <div className={scrollPos ? 'header _scroll' : 'header'}>
         <div className="row">
-          <Box sx={{ minWidth: 80 }}>
-            <FormControl fullWidth size="small">
-              <InputLabel id="demo-simple-select-label">Lang</InputLabel>
+          <Box sx={{ minWidth: 50 }}>
+            <FormControl fullWidth size="small" variant="standard">
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                sx={{ fontSize: 18, textAlign: 'center' }}
                 value={lang}
-                label="Age"
                 onChange={handleChangeLang}
               >
-                <MenuItem value="en">en</MenuItem>
-                <MenuItem value="ru">ru</MenuItem>
+                <MenuItem value="en" sx={{ fontSize: 16 }}>
+                  en
+                </MenuItem>
+                <MenuItem value="ru" sx={{ fontSize: 16 }}>
+                  ru
+                </MenuItem>
               </Select>
             </FormControl>
           </Box>
