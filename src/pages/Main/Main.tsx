@@ -1,7 +1,7 @@
 import './Main.scss';
 import React from 'react';
-import { Avatar } from '@mui/material';
 import ava1 from '../../assets/ava1.jpg';
+import brokenImage from '../../assets/brokenImage.webp';
 
 function Main() {
   return (
@@ -27,7 +27,7 @@ function Main() {
         </div>
         <div className="row">
           <div className="developer">
-            <img src={ava1} alt="logoVape" height={200} />
+            <img src={ava1} alt="ava" height={200} />
             <div className="col">
               <div className="position">Team Lead</div>
               <div className="name">Oleh Pluhatyrov</div>
@@ -46,7 +46,7 @@ function Main() {
           </div>
 
           <div className="developer">
-            <Avatar src="/broken-image.jpg" sx={{ height: [200], width: [200] }} />
+            <img src={brokenImage} alt="ava" height={200} />
             <div className="col">
               <div className="position">Frontend Developer</div>
               <div className="name">Maryia Pashkovich</div>
@@ -65,7 +65,7 @@ function Main() {
           </div>
 
           <div className="developer">
-            <Avatar src="/broken-image.jpg" sx={{ height: [200], width: [200] }} />
+            <img src={brokenImage} alt="ava" height={200} />
             <div className="col">
               <div className="position">Frontend Developer</div>
               <div className="name">Dzmitry Shiwe</div>
