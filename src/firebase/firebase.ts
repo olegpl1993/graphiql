@@ -8,7 +8,9 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth';
-import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore';
+import {
+  getFirestore, query, getDocs, collection, where, addDoc
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAnTTxWvKYAbvoz0kdUXrhVK3TkmVTeFG8',
@@ -28,7 +30,7 @@ const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
+    const { user } = res;
     const q = query(collection(db, 'users'), where('uid', '==', user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
@@ -55,7 +57,7 @@ const logInWithEmailAndPassword = async (email: string, password: string) => {
 const registerWithEmailAndPassword = async (name: string, email: string, password: string) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
+    const { user } = res;
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
       name,
