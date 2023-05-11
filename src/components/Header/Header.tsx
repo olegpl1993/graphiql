@@ -9,7 +9,6 @@ import { useAppSelector } from '../../hook';
 
 function Header() {
   const isAuth = useAppSelector((state) => state.userState.isAuth);
-  console.log(isAuth);
 
   const [isScroll, setIsScroll] = useState(false);
   window.addEventListener('scroll', () => {
@@ -20,14 +19,16 @@ function Header() {
     <div className={isScroll ? 'header _scroll' : 'header'}>
       <div className="row">
         <LangSelect />
-        <nav className="navigation">
-          <Button variant="text">
-            <NavLink to="/">Main</NavLink>
-          </Button>
-          <Button variant="text">
-            <NavLink to="/graphiql">Graphiql</NavLink>
-          </Button>
-        </nav>
+        {isAuth && (
+          <nav className="navigation">
+            <Button variant="text">
+              <NavLink to="/">Main</NavLink>
+            </Button>
+            <Button variant="text">
+              <NavLink to="/graphiql">Graphiql</NavLink>
+            </Button>
+          </nav>
+        )}
       </div>
       {isAuth ? <UserLogin /> : <LoginRowBtn />}
     </div>
