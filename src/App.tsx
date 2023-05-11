@@ -1,28 +1,19 @@
 import './App.scss';
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
+import { onAuthStateChanged } from 'firebase/auth';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Main from './pages/Main/Main';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Graphiql from './pages/Graphiql/Graphiql';
-import { useAppDispatch } from './hook';
+import { useAppDispatch, useAppSelector } from './hook';
 import { changeIsAuth, changeUser } from './store/userSlice';
-
-const app = initializeApp({
-  apiKey: 'AIzaSyCoLM6JMvoGKYI_rreQqVUSndfVKHZKBXg',
-  authDomain: 'graphiql-b78c7.firebaseapp.com',
-  projectId: 'graphiql-b78c7',
-  storageBucket: 'graphiql-b78c7.appspot.com',
-  messagingSenderId: '387427903221',
-  appId: '1:387427903221:web:0f749726fd8fd663aac7bc',
-});
-
-const auth = getAuth(app);
+import PrivateRoute from './PrivateRoute';
+import auth from './firebase';
 
 function App() {
+  const isAuth = useAppSelector((state) => state.userState.isAuth);
   const dispatch = useAppDispatch();
 
   onAuthStateChanged(auth, (user) => {
@@ -44,8 +35,10 @@ function App() {
         </div>
         <div className="contentBox">
           <Routes>
+            <Route element={<PrivateRoute auth={isAuth} />}>
+              <Route path="/graphiql" element={<Graphiql />} />
+            </Route>
             <Route path="/" element={<Main />} />
-            <Route path="/graphiql" element={<Graphiql />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
