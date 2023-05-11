@@ -15,9 +15,9 @@ function LangSelect() {
   };
 
   return (
-    <Box sx={{ minWidth: 50 }}>
+    <Box sx={{ minWidth: 40 }}>
       <FormControl fullWidth size="small" variant="standard">
-        <Select sx={{ fontSize: 18, textAlign: 'center' }} value={lang} onChange={handleChangeLang}>
+        <Select sx={{ fontSize: 16, textAlign: 'center' }} value={lang} onChange={handleChangeLang}>
           <MenuItem value="en" sx={{ fontSize: 16 }}>
             en
           </MenuItem>

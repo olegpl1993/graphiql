@@ -14,16 +14,36 @@
     background-color: rgb(237, 237, 237);
   }
 
+  .leftBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(255, 0, 187);
+  }
+
   .navigation {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
+    font-size: 20px;
   }
 
-  .row {
+  .rightBox {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 }

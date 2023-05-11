@@ -6,6 +6,7 @@ import LangSelect from '../LangSelect/LangSelect';
 import LoginRowBtn from '../LoginRowBtn/LoginRowBtn';
 import UserLogin from '../UserLogin/UserLogin';
 import { useAppSelector } from '../../hook';
+import graphqlLogo from '../../assets/graphqlLogo.svg';
 
 function Header() {
   const isAuth = useAppSelector((state) => state.userState.isAuth);
@@ -17,20 +18,25 @@ function Header() {
 
   return (
     <div className={isScroll ? 'header _scroll' : 'header'}>
-      <div className="row">
-        <LangSelect />
+      <div className="leftBox">
+        <NavLink to="/">
+          <div className="logo">
+            <img src={graphqlLogo} alt="ava" height={50} />
+            <span className="logoText">GraphiQL</span>
+          </div>
+        </NavLink>
         {isAuth && (
           <nav className="navigation">
-            <Button variant="text">
-              <NavLink to="/">Main</NavLink>
-            </Button>
-            <Button variant="text">
-              <NavLink to="/graphiql">Graphiql</NavLink>
-            </Button>
+            <NavLink to="/graphiql">
+              <Button variant="outlined">Code editor</Button>
+            </NavLink>
           </nav>
         )}
       </div>
-      {isAuth ? <UserLogin /> : <LoginRowBtn />}
+      <div className="rightBox">
+        {isAuth ? <UserLogin /> : <LoginRowBtn />}
+        <LangSelect />
+      </div>
     </div>
   );
 }
