@@ -2,76 +2,42 @@ import './Header.scss';
 import React, { useState } from 'react';
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector } from '../../hook';
-import Modal from '../Modal/Modal';
-import Signin from '../Signin/Signin';
-import Signup from '../Signup/Signup';
 import LangSelect from '../LangSelect/LangSelect';
+import LoginRowBtn from '../LoginRowBtn/LoginRowBtn';
+import UserLogin from '../UserLogin/UserLogin';
+import { useAppSelector } from '../../hook';
+import graphqlLogo from '../../assets/graphqlLogo.svg';
 
 function Header() {
-  // lang -------------------------------------------------------------------
-  const lang = useAppSelector((state) => state.langState.lang);
-  interface TextKey {
-    signin: string;
-    signup: string;
-  }
-  interface Text {
-    [key: string]: TextKey;
-  }
-  const text: Text = {
-    en: {
-      signin: 'sign in',
-      signup: 'sign up',
-    },
-    ru: {
-      signin: 'войти',
-      signup: 'регистрация',
-    },
-  };
-  // ----------------------------------------------------------------------------
+  const isAuth = useAppSelector((state) => state.userState.isAuth);
 
-  const [scrollPos, setScrollPos] = useState(window.pageYOffset);
+  const [isScroll, setIsScroll] = useState(false);
   window.addEventListener('scroll', () => {
-    setScrollPos(window.pageYOffset);
+    setIsScroll(!!window.pageYOffset);
   });
 
-  const [signinModalActiv, setSigninModalActiv] = useState(false);
-  const [signupModalActiv, setSignupModalActiv] = useState(false);
-
   return (
-    <>
-      {signinModalActiv && (
-        <Modal modalActiv={signinModalActiv} setModalActiv={setSigninModalActiv}>
-          <Signin />
-        </Modal>
-      )}
-      {signupModalActiv && (
-        <Modal modalActiv={signupModalActiv} setModalActiv={setSignupModalActiv}>
-          <Signup />
-        </Modal>
-      )}
-      <div className={scrollPos ? 'header _scroll' : 'header'}>
-        <div className="row">
-          <LangSelect />
+    <div className={isScroll ? 'header _scroll' : 'header'}>
+      <div className="leftBox">
+        <NavLink to="/">
+          <div className="logo">
+            <img src={graphqlLogo} alt="ava" height={50} />
+            <span className="logoText">GraphiQL</span>
+          </div>
+        </NavLink>
+        {isAuth && (
           <nav className="navigation">
-            <Button variant="text">
-              <NavLink to="/">Main</NavLink>
-            </Button>
-            <Button variant="text">
-              <NavLink to="/graphiql">Graphiql</NavLink>
-            </Button>
+            <NavLink to="/graphiql">
+              <Button variant="outlined">Code editor</Button>
+            </NavLink>
           </nav>
-        </div>
-        <div className="row">
-          <Button variant="contained" onClick={() => setSigninModalActiv(true)}>
-            {text[lang].signin}
-          </Button>
-          <Button variant="contained" onClick={() => setSignupModalActiv(true)}>
-            {text[lang].signup}
-          </Button>
-        </div>
+        )}
       </div>
-    </>
+      <div className="rightBox">
+        {isAuth ? <UserLogin /> : <LoginRowBtn />}
+        <LangSelect />
+      </div>
+    </div>
   );
 }
 
