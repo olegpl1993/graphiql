@@ -1,6 +1,6 @@
 import './App.scss';
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Main from './pages/Main/Main';
@@ -9,7 +9,6 @@ import Footer from './components/Footer/Footer';
 import Graphiql from './pages/Graphiql/Graphiql';
 import { useAppDispatch, useAppSelector } from './hook';
 import { changeIsAuth, changeUser } from './store/userSlice';
-import PrivateRoute from './PrivateRoute';
 import auth from './firebase';
 
 function App() {
@@ -29,25 +28,19 @@ function App() {
 
   return (
     <div className="app">
-
       <div className="headerBox">
         <Header />
       </div>
-
       <div className="contentBox">
         <Routes>
-          <Route element={<PrivateRoute auth={isAuth} />}>
-            <Route path="/graphiql" element={<Graphiql />} />
-          </Route>
+          <Route path="/graphiql" element={isAuth ? <Graphiql /> : <Navigate to="/" />} />
           <Route path="/" element={<Main />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
-
       <div className="footerBox">
         <Footer />
       </div>
-
     </div>
   );
 }
