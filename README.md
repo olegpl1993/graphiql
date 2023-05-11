@@ -1,4 +1,4 @@
-# deploy: https://garphiql.netlify.app/#/
+# deploy: https://garphiql.netlify.app/
 
 GraphiQL is a playground/IDE for graphQL requests.
 
