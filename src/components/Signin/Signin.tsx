@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import './Signin.scss';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { Button } from '@mui/material';
 
 function Signin() {
   const [mail, setMail] = useState('');
@@ -41,7 +42,9 @@ function Signin() {
             setPass(e.target.value);
           }}
         />
-        <input className="input" type="submit" value="SIGN UP" />
+        <Button type="submit" variant="contained" sx={{ width: '100%' }}>
+          SIGN IN
+        </Button>
       </form>
     </div>
   );
