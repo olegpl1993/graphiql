@@ -29,9 +29,11 @@ function App() {
 
   return (
     <div className="app">
+
       <div className="headerBox">
         <Header />
       </div>
+
       <div className="contentBox">
         <Routes>
           <Route element={<PrivateRoute auth={isAuth} />}>
@@ -41,9 +43,11 @@ function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
+
       <div className="footerBox">
         <Footer />
       </div>
+
     </div>
   );
 }
