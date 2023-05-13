@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import './Signin.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useAppDispatch } from '../../hook';
-import { changeIsOpenSnackbar, changeSnackbarMessage, changeSuccess } from '../../store/snackbarSlice';
+import {
+  changeIsOpenSnackbar,
+  changeSnackbarMessage,
+  changeSuccess,
+} from '../../store/snackbarSlice';
 
 interface FormLogin {
   email: string;
@@ -37,7 +42,7 @@ function Signin() {
 
   return (
     <div className="signin">
-      <div className="title">SIGN IN</div>
+      <div className="title">Authorization</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignin)}>
         <input placeholder="mail" className="input" type="text" {...register('email')} />
         <input
@@ -46,7 +51,9 @@ function Signin() {
           type={shown ? 'text' : 'password'}
           {...register('password')}
         />
-        <VisibilityOffIcon onClick={() => setShown(!shown)} />
+        <IconButton onClick={() => setShown(!shown)}>
+          {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+        </IconButton>
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN IN
         </Button>

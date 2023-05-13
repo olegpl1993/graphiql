@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import './Signup.scss';
 import { useForm } from 'react-hook-form';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import InputError from '../InputError/InputError';
 import { useAppDispatch } from '../../hook';
-import { changeIsOpenSnackbar, changeSnackbarMessage, changeSuccess } from '../../store/snackbarSlice';
+import {
+  changeIsOpenSnackbar,
+  changeSnackbarMessage,
+  changeSuccess,
+} from '../../store/snackbarSlice';
 
 interface FormRegistr {
   email: string;
@@ -46,7 +51,7 @@ function Signup() {
 
   return (
     <div className="signup">
-      <div className="title">SIGN UP</div>
+      <div className="title">Registration</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignup)}>
         <input
           placeholder="mail"
@@ -72,7 +77,9 @@ function Signup() {
           })}
         />
         {errors.password && <InputError message={errors.password.message} />}
-        <VisibilityOffIcon onClick={() => setShown(!shown)} />
+        <IconButton onClick={() => setShown(!shown)}>
+          {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+        </IconButton>
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN UP
         </Button>
