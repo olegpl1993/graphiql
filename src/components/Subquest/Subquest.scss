@@ -1,0 +1,47 @@
+.subquest {
+  border: 1px solid red;
+  width: 100%;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+
+  &_btnRow {
+    border: 1px solid rgb(0, 255, 234);
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+
+    .startBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+  }
+
+  &_box {
+    border: 1px solid rgb(242, 0, 255);
+    padding: 1px;
+    transform: scale(1, 0);
+    transition: all 0.2s ease;
+    height: 0px;
+    &._open {
+      transform: scale(1, 1);
+      height: 150px;
+    }
+
+    .subquest_headers {
+      border: 1px solid rgb(0, 17, 255);
+      padding: 10px;
+      height: 100%;
+    }
+
+    .subquest_variables {
+      border: 1px solid rgb(43, 255, 0);
+      padding: 10px;
+      height: 100%;
+    }
+  }
+}
