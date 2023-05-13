@@ -3,7 +3,6 @@ import './Signin.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Button } from '@mui/material';
-// import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 interface FormLogin {
@@ -23,7 +22,6 @@ function Signin() {
       .then((userCredential) => {
         const { user } = userCredential;
         console.log('Успешная авторизация', user);
-
         setIsValid(true);
         setTimeout(() => {
           reset();
