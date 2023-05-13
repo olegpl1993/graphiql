@@ -1,0 +1,67 @@
+.docs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  width: 38px;
+  padding: 1px;
+  position: relative;
+  transition: all 0.2s ease;
+  gap: 1px;
+  border-right: 1px solid rgb(200, 200, 200);
+  @media (max-width: 1023px) {
+    height: 40px;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
+  }
+  &._open {
+    width: 70%;
+    @media (max-width: 1023px) {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  &_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1px;
+    @media (max-width: 1023px) {
+      justify-content: flex-end;
+      padding-right: 10px;
+    }
+  }
+
+  &_openBtn {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_text {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    gap: 3px;
+    transform: scale(0, 1);
+    transition: all 0.2s ease;
+    @media (max-width: 1023px) {
+      transform: scale(1, 0);
+    }
+    &._open {
+      transform: scale(1, 1);
+    }
+
+    .docs_box {
+      padding: 10px;
+    }
+  }
+}
