@@ -9,7 +9,7 @@ import Footer from './components/Footer/Footer';
 import Graphiql from './pages/Graphiql/Graphiql';
 import { useAppDispatch, useAppSelector } from './hook';
 import { changeIsAuth, changeUser } from './store/userSlice';
-import auth from './firebase/firebase';
+import { auth } from './firebase/firebase';
 
 function App() {
   const isAuth = useAppSelector((state) => state.userState.isAuth);
