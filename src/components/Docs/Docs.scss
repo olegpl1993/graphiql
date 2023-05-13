@@ -1,0 +1,48 @@
+.docs {
+  border: 1px solid rgb(255, 0, 0);
+  height: 100%;
+  width: 33px;
+  padding: 3px;
+  padding-right: 30px;
+  position: relative;
+  transition: all 0.2s ease;
+  @media (max-width: 1023px) {
+    height: 70px;
+    width: 100%;
+  }
+  &._open {
+    width: 500px;
+    @media (max-width: 1023px) {
+      height: 200px;
+      width: 100%;
+    }
+  }
+
+  &_openBtn {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &_text {
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    transform: scale(0, 1);
+    padding: 3px;
+    overflow: auto;
+    flex-direction: column;
+    gap: 3px;
+    transition: all 0.2s ease;
+    &._open {
+      transform: scale(1, 1);
+    }
+  }
+}
