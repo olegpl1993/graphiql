@@ -1,21 +1,39 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import './Signin.scss';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Button } from '@mui/material';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
+interface FormLogin {
+  email: string;
+  password: string;
+}
 
 function Signin() {
-  const [mail, setMail] = useState('');
-  const [pass, setPass] = useState('');
+  const { register, handleSubmit, reset } = useForm<FormLogin>();
+  const [shown, setShown] = useState(false);
+  const [isInValid, setIsInValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
-  const handleSignin = (e: FormEvent) => {
-    e.preventDefault();
+  const handleSignin: SubmitHandler<FormLogin> = (form: FormLogin) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, mail, pass)
+    signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const { user } = userCredential;
         console.log('Успешная авторизация', user);
+        setIsValid(true);
+        setTimeout(() => {
+          reset();
+          setIsValid(false);
+        }, 3000);
       })
       .catch((error) => {
+        setIsInValid(true);
+        setTimeout(() => {
+          reset();
+          setIsInValid(false);
+        }, 3000);
         console.error(error);
       });
   };
@@ -23,25 +41,22 @@ function Signin() {
   return (
     <div className="signin">
       <div className="title">SIGN IN</div>
-      <form className="form" action="submit" onSubmit={handleSignin}>
+      <form className="form" action="submit" onSubmit={handleSubmit(handleSignin)}>
         <input
           placeholder="mail"
           className="input"
           type="text"
-          value={mail}
-          onChange={(e) => {
-            setMail(e.target.value);
-          }}
+          {...register('email')}
         />
         <input
           placeholder="pass"
           className="input"
-          type="text"
-          value={pass}
-          onChange={(e) => {
-            setPass(e.target.value);
-          }}
+          type={shown ? 'text' : 'password'}
+          {...register('password')}
         />
+        <VisibilityOffIcon onClick={() => setShown(!shown)} />
+        {isValid && <div className="login">Logined Susscesfuly</div>}
+        {isInValid && <div className="notlogin">Logined Failure</div>}
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN IN
         </Button>
