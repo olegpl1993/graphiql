@@ -1,6 +1,6 @@
 .modalWrapper {
   position: fixed;
-  z-index: 999;
+  z-index: 5;
   left: 0;
   top: 0;
   height: 100vh;
@@ -26,7 +26,7 @@
     position: relative;
     background-color: white;
     width: 320px;
-    height: 250px;
+    height: 270px;
     animation-duration: 0.5s;
     animation-name: boxAnime;
     cursor: auto;

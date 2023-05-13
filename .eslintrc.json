@@ -28,6 +28,7 @@
         "tsx": "never"
       }
     ],
+    "object-curly-newline": "off", 
     "no-param-reassign": ["error", { "props": false }],
     "no-console": "off",
     "linebreak-style": 0,

@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import langReducer from './langSlice';
 import userReducer from './userSlice';
+import snackbarReducer from './snackbarSlice';
 
 const store = configureStore({
   reducer: {
     langState: langReducer,
     userState: userReducer,
+    snackbarState: snackbarReducer,
   },
 });
 

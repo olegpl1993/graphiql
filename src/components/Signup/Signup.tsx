@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import './Signup.scss';
 import { useForm } from 'react-hook-form';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import InputError from '../InputError/InputError';
+import { useAppDispatch } from '../../hook';
+import {
+  changeIsOpenSnackbar,
+  changeSnackbarMessage,
+  changeSuccess,
+} from '../../store/snackbarSlice';
 
 interface FormRegistr {
   email: string;
@@ -12,45 +19,39 @@ interface FormRegistr {
 }
 
 function Signup() {
+  const dispatch = useAppDispatch();
+  const openSnackbar = (success: boolean, message: string) => {
+    dispatch(changeSuccess(success));
+    dispatch(changeIsOpenSnackbar(true));
+    dispatch(changeSnackbarMessage(message));
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<FormRegistr>();
 
   const [shown, setShown] = useState(false);
-  const [isValid, setIsValid] = useState(false);
-  const [isInValid, setIsInValid] = useState(false);
 
   const handleSignup = (form: FormRegistr) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        console.log('Успешная регистрация', user);
-        setIsValid(true);
-        setTimeout(() => {
-          reset();
-          setIsValid(false);
-        }, 3000);
+        if (user) openSnackbar(true, 'Successful registration!');
       })
-      .catch((error) => {
-        setIsInValid(true);
-        setTimeout(() => {
-          reset();
-          setIsInValid(false);
-        }, 3000);
-        console.error(error);
+      .catch(() => {
+        openSnackbar(false, 'Registration failure!');
       });
   };
 
-  const passwordRegEx = /^(?=.[a-zA-Z])(?=.\d)(?=.[@$!%#?&{}()[];'":])[A-Za-z\d@$!%*#?&:;(){}[]'"]{8,}$/;
+  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,}$/;
   const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   return (
     <div className="signup">
-      <div className="title">SIGN UP</div>
+      <div className="title">Registration</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignup)}>
         <input
           placeholder="mail"
@@ -76,9 +77,9 @@ function Signup() {
           })}
         />
         {errors.password && <InputError message={errors.password.message} />}
-        <VisibilityOffIcon onClick={() => setShown(!shown)} />
-        {isValid && <div className="login">Registration Completed</div>}
-        {isInValid && <div className="notlogin">Registration Failure</div>}
+        <IconButton onClick={() => setShown(!shown)}>
+          {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+        </IconButton>
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN UP
         </Button>
