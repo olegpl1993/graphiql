@@ -5,6 +5,8 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { Button } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import InputError from '../InputError/InputError';
+import { useAppDispatch } from '../../hook';
+import { changeIsOpenSnackbar, changeSnackbarMessage, changeSuccess } from '../../store/snackbarSlice';
 
 interface FormRegistr {
   email: string;
@@ -12,36 +14,30 @@ interface FormRegistr {
 }
 
 function Signup() {
+  const dispatch = useAppDispatch();
+  const openSnackbar = (success: boolean, message: string) => {
+    dispatch(changeSuccess(success));
+    dispatch(changeIsOpenSnackbar(true));
+    dispatch(changeSnackbarMessage(message));
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<FormRegistr>();
 
   const [shown, setShown] = useState(false);
-  const [isValid, setIsValid] = useState(false);
-  const [isInValid, setIsInValid] = useState(false);
 
   const handleSignup = (form: FormRegistr) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        console.log('Успешная регистрация', user);
-        setIsValid(true);
-        setTimeout(() => {
-          reset();
-          setIsValid(false);
-        }, 3000);
+        if (user) openSnackbar(true, 'Successful registration!');
       })
-      .catch((error) => {
-        setIsInValid(true);
-        setTimeout(() => {
-          reset();
-          setIsInValid(false);
-        }, 3000);
-        console.error(error);
+      .catch(() => {
+        openSnackbar(false, 'Registration failure!');
       });
   };
 
@@ -77,8 +73,6 @@ function Signup() {
         />
         {errors.password && <InputError message={errors.password.message} />}
         <VisibilityOffIcon onClick={() => setShown(!shown)} />
-        {isValid && <div className="login">Registration Completed</div>}
-        {isInValid && <div className="notlogin">Registration Failure</div>}
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN UP
         </Button>
