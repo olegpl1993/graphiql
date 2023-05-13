@@ -7,19 +7,20 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 function Subquest() {
   const [headersVariables, setHeadersVariables] = useState(true);
   const handleHeaders = () => {
-    console.log('handleHeaders');
     setHeadersVariables(true);
   };
   const handleVariables = () => {
-    console.log('handleVariables');
     setHeadersVariables(false);
   };
 
   const [isOpenSubquest, setOpenSubquest] = useState(false);
   const handleOpenSubquest = () => {
     setOpenSubquest(!isOpenSubquest);
-    console.log('handleOpenSubquest', !isOpenSubquest);
   };
+
+  const [headersContent, setHeadersContent] = useState('Headers');
+  const [variablesContent, setVariablesContent] = useState('Variables');
+
   return (
     <div className="subquest">
       <div className="subquest_btnRow">
@@ -33,7 +34,7 @@ function Subquest() {
         </div>
         <IconButton onClick={handleOpenSubquest}>
           {isOpenSubquest ? (
-            <ExpandMoreIcon fontSize="large" color="primary" />
+            <ExpandMoreIcon fontSize="large" sx={{ color: 'rgb(255, 0, 187)' }} />
           ) : (
             <ExpandLessIcon fontSize="large" color="primary" />
           )}
@@ -41,9 +42,17 @@ function Subquest() {
       </div>
       <div className={isOpenSubquest ? 'subquest_box _open' : 'subquest_box'}>
         {headersVariables ? (
-          <div className="subquest_headers">Headers</div>
+          <textarea
+            className="headers_area"
+            value={headersContent}
+            onChange={(e) => setHeadersContent(e.target.value)}
+          />
         ) : (
-          <div className="subquest_variables">Variables</div>
+          <textarea
+            className="variables_area"
+            value={variablesContent}
+            onChange={(e) => setVariablesContent(e.target.value)}
+          />
         )}
       </div>
     </div>

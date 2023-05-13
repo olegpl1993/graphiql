@@ -3,16 +3,18 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  border: 1px solid rgb(255, 0, 0);
   height: 100%;
   width: 38px;
   padding: 1px;
   position: relative;
   transition: all 0.2s ease;
   gap: 1px;
+  border-right: 1px solid rgb(200, 200, 200);
   @media (max-width: 1023px) {
     height: 40px;
     width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
   }
   &._open {
     width: 70%;
@@ -24,7 +26,6 @@
 
   &_row {
     width: 100%;
-    border: 1px solid rgb(47, 0, 255);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -44,7 +45,6 @@
   }
 
   &_text {
-    border: 1px solid black;
     height: 100%;
     width: 100%;
     display: flex;
@@ -61,7 +61,6 @@
     }
 
     .docs_box {
-      border: 1px solid yellow;
       padding: 10px;
     }
   }

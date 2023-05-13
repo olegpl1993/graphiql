@@ -7,7 +7,6 @@ function Docs() {
   const [isOpenDocs, setOpenDocs] = useState(false);
   const handleOpenDocs = () => {
     setOpenDocs(!isOpenDocs);
-    console.log('handleOpenDocs', !isOpenDocs);
   };
 
   return (
