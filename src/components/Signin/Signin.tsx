@@ -40,8 +40,6 @@ function Signin() {
 
   return (
     <div className="signin">
-      {isValid && <div className="login">Logined Susscesfuly</div>}
-      {isInValid && <div className="notlogin">Logined Failure</div>}
       <div className="title">SIGN IN</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignin)}>
         <input
@@ -57,6 +55,8 @@ function Signin() {
           {...register('password')}
         />
         <VisibilityOffIcon onClick={() => setShown(!shown)} />
+        {isValid && <div className="login">Logined Susscesfuly</div>}
+        {isInValid && <div className="notlogin">Logined Failure</div>}
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN IN
         </Button>

@@ -45,14 +45,11 @@ function Signup() {
       });
   };
 
-  // eslint-disable-next-line no-useless-escape
-  const passwordRegEx = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&{}()\[\];'":])[A-Za-z\d@$!%*#?&:;(){}\[\]'"]{8,}$/;
+  const passwordRegEx = /^(?=.[a-zA-Z])(?=.\d)(?=.[@$!%#?&{}()[];'":])[A-Za-z\d@$!%*#?&:;(){}[]'"]{8,}$/;
   const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   return (
     <div className="signup">
-      {isValid && <div className="login">Registration Completed</div>}
-      {isInValid && <div className="notlogin">Registration Failure</div>}
       <div className="title">SIGN UP</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignup)}>
         <input
@@ -80,6 +77,8 @@ function Signup() {
         />
         {errors.password && <InputError message={errors.password.message} />}
         <VisibilityOffIcon onClick={() => setShown(!shown)} />
+        {isValid && <div className="login">Registration Completed</div>}
+        {isInValid && <div className="notlogin">Registration Failure</div>}
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN UP
         </Button>
