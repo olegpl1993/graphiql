@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCoLM6JMvoGKYI_rreQqVUSndfVKHZKBXg',
-  authDomain: 'graphiql-b78c7.firebaseapp.com',
-  projectId: 'graphiql-b78c7',
-  storageBucket: 'graphiql-b78c7.appspot.com',
-  messagingSenderId: '387427903221',
-  appId: '1:387427903221:web:0f749726fd8fd663aac7bc',
+  apiKey: 'AIzaSyAnTTxWvKYAbvoz0kdUXrhVK3TkmVTeFG8',
+  authDomain: 'graphiql-aut-db.firebaseapp.com',
+  projectId: 'graphiql-aut-db',
+  storageBucket: 'graphiql-aut-db.appspot.com',
+  messagingSenderId: '1062970047611',
+  appId: '1:1062970047611:web:e35fe9e716175f640076de',
 };
 
 const app = initializeApp(firebaseConfig);
