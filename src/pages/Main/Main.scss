@@ -3,41 +3,67 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 10px;
-  padding: 20px;
+  padding: 25px;
+  width: 100%;
+  @media (max-width: 1023px) {
+    padding: 10px;
+  }
 
   .about,
   .developers,
-  .rss,
-  .course {
+  .rss, 
+  .stack {
     padding-bottom: 10px;
+    width: 100%;
   }
 
   .row {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 100px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      @media (max-width: 1023px) {
+        gap: 30px;
+      }
   }
 
   .developer {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
-    padding: 20px;
+    padding: 35px;
     border: 1px solid rgb(200, 200, 200);
-    width: 250px;
+    border-radius: 5px;
+    width: 270px;
+    height: 465px;
 
     .col {
       font-size: 16px;
       display: flex;
       flex-direction: column;
       gap: 5px;
+      width: 100%;
     }
 
     .position {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .name {
+      font-size: 18px;
+      font-weight: 500;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .contrList {
@@ -48,13 +74,16 @@
 
   .title {
     font-size: 26px;
+    font-weight: 600;
     line-height: 140%;
+    margin-bottom: 10px;
   }
 
   .text {
     font-size: 22px;
     line-height: 130%;
     margin-left: 10px;
+    margin-bottom: 10px;
   }
 
   .list {
