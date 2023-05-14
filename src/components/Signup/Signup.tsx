@@ -46,7 +46,7 @@ function Signup() {
       });
   };
 
-  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,}$/;
+  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,15}$/;
   const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   return (
@@ -63,23 +63,25 @@ function Signup() {
           })}
         />
         {errors.email && <InputError message={errors.email.message} />}
-        <input
-          placeholder="pass"
-          className="input"
-          type={shown ? 'text' : 'password'}
-          {...register('password', {
-            required: { value: true, message: 'Password is required' },
-            pattern: {
-              value: passwordRegEx,
-              message: 'Should contain at least one letter, one digit, one special character',
-            },
-            minLength: { value: 8, message: 'Should be at least 8 chars' },
-          })}
-        />
+        <div className="pass">
+          <input
+            placeholder="pass"
+            className="input"
+            type={shown ? 'text' : 'password'}
+            {...register('password', {
+              required: { value: true, message: 'Password is required' },
+              pattern: {
+                value: passwordRegEx,
+                message: 'Should contain at least one letter, one digit, one special character',
+              },
+              minLength: { value: 8, message: 'Should be at least 8 chars' },
+            })}
+          />
+          <IconButton className="visibilityIcon" onClick={() => setShown(!shown)}>
+            {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+          </IconButton>
+        </div>
         {errors.password && <InputError message={errors.password.message} />}
-        <IconButton onClick={() => setShown(!shown)}>
-          {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
-        </IconButton>
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN UP
         </Button>

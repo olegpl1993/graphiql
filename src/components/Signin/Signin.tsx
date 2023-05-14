@@ -45,15 +45,17 @@ function Signin() {
       <div className="title">Authorization</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignin)}>
         <input placeholder="mail" className="input" type="text" {...register('email')} />
-        <input
-          placeholder="pass"
-          className="input"
-          type={shown ? 'text' : 'password'}
-          {...register('password')}
-        />
-        <IconButton onClick={() => setShown(!shown)}>
-          {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
-        </IconButton>
+        <div className="pass">
+          <input
+            placeholder="pass"
+            className="input"
+            type={shown ? 'text' : 'password'}
+            {...register('password')}
+          />
+          <IconButton className="visibilityIcon" onClick={() => setShown(!shown)}>
+            {shown ? <VisibilityIcon /> : <VisibilityOffIcon />}
+          </IconButton>
+        </div>
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
           SIGN IN
         </Button>
