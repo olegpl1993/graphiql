@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -13,6 +13,16 @@ function LangSelect() {
   const handleChangeLang = (event: SelectChangeEvent) => {
     dispatch(changeLang(event.target.value as Languages));
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('lang')) {
+      dispatch(changeLang(localStorage.getItem('lang') as Languages));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('lang', lang);
+  }, [lang]);
 
   return (
     <Box sx={{ minWidth: 40 }}>
