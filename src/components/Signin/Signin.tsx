@@ -67,7 +67,7 @@ function Signin() {
 
   return (
     <div className="signin">
-      <div className="title">text[lang].titlesigin</div>
+      <div className="title">{text[lang].titlesigin}</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignin)}>
         <input placeholder="mail" className="input" type="text" {...register('email')} />
         <div className="pass">
