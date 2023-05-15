@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Button, IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useAppDispatch } from '../../hook';
+import { useAppDispatch, useAppSelector } from '../../hook';
 import {
   changeIsOpenSnackbar,
   changeSnackbarMessage,
@@ -25,6 +25,31 @@ function Signin() {
     dispatch(changeSnackbarMessage(message));
   };
 
+  const lang = useAppSelector((state) => state.langState.lang);
+  interface TextKey {
+    titlesigin: string;
+    signin: string;
+    success: string;
+    faill: string;
+  }
+  interface Text {
+    [key: string]: TextKey;
+  }
+  const text: Text = {
+    en: {
+      titlesigin: 'Authorization',
+      signin: 'SIGN IN',
+      success: 'Login successfully!',
+      faill: 'Login failure!',
+    },
+    ru: {
+      titlesigin: 'Авторизация',
+      signin: 'ВОЙТИ',
+      success: 'Вход успешен',
+      faill: 'Вход не удался',
+    },
+  };
+
   const { register, handleSubmit } = useForm<FormLogin>();
   const [shown, setShown] = useState(false);
 
@@ -33,16 +58,16 @@ function Signin() {
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        if (user) openSnackbar(true, 'Login successfully!');
+        if (user) openSnackbar(true, text[lang].success);
       })
       .catch(() => {
-        openSnackbar(false, 'Login failure!');
+        openSnackbar(false, text[lang].faill);
       });
   };
 
   return (
     <div className="signin">
-      <div className="title">Authorization</div>
+      <div className="title">text[lang].titlesigin</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignin)}>
         <input placeholder="mail" className="input" type="text" {...register('email')} />
         <div className="pass">
@@ -57,7 +82,7 @@ function Signin() {
           </IconButton>
         </div>
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
-          SIGN IN
+          {text[lang].signin}
         </Button>
       </form>
     </div>

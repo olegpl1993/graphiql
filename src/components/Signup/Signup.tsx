@@ -6,7 +6,7 @@ import { Button, IconButton } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import InputError from '../InputError/InputError';
-import { useAppDispatch } from '../../hook';
+import { useAppDispatch, useAppSelector } from '../../hook';
 import {
   changeIsOpenSnackbar,
   changeSnackbarMessage,
@@ -26,6 +26,46 @@ function Signup() {
     dispatch(changeSnackbarMessage(message));
   };
 
+  const lang = useAppSelector((state) => state.langState.lang);
+  interface TextKey {
+    titlesigup: string;
+    signup: string;
+    success: string;
+    faill: string;
+    mailreq: string;
+    mailredx: string;
+    passreq: string;
+    passredx: string;
+    minlength: string;
+  }
+  interface Text {
+    [key: string]: TextKey;
+  }
+  const text: Text = {
+    en: {
+      titlesigup: 'Registration',
+      signup: 'SIGN UP',
+      success: 'Successful registration!',
+      faill: 'Registration failure!',
+      mailreq: 'Email is required',
+      mailredx: 'Enter valid E-mail',
+      passreq: 'Password is required',
+      passredx: 'Should contain at least one letter, one digit, one special character',
+      minlength: 'Should be at least 8 chars',
+    },
+    ru: {
+      titlesigup: 'Зарегаться',
+      signup: 'РЕГИСТРАЦИЯ',
+      success: 'Регистрация успеша',
+      faill: 'Регистрация не удалась',
+      mailreq: 'Электронная почта',
+      mailredx: 'Действительная эл. почта',
+      passreq: 'Введите пароль',
+      passredx: 'Должен содержать хотя бы одну букву, одну цифру, один специальный символ',
+      minlength: 'Должно быть не менее 8 символов',
+    },
+  };
+
   const {
     register,
     handleSubmit,
@@ -39,10 +79,10 @@ function Signup() {
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        if (user) openSnackbar(true, 'Successful registration!');
+        if (user) openSnackbar(true, text[lang].success);
       })
       .catch(() => {
-        openSnackbar(false, 'Registration failure!');
+        openSnackbar(false, text[lang].faill);
       });
   };
 
@@ -51,15 +91,15 @@ function Signup() {
 
   return (
     <div className="signup">
-      <div className="title">Registration</div>
+      <div className="title">{text[lang].titlesigup}</div>
       <form className="form" action="submit" onSubmit={handleSubmit(handleSignup)}>
         <input
           placeholder="mail"
           className="input"
           type="text"
           {...register('email', {
-            required: { value: true, message: 'Email is required' },
-            pattern: { value: emailRegEx, message: 'Enter valid E-mail' },
+            required: { value: true, message: text[lang].mailreq },
+            pattern: { value: emailRegEx, message: text[lang].mailredx },
           })}
         />
         {errors.email && <InputError message={errors.email.message} />}
@@ -69,12 +109,12 @@ function Signup() {
             className="input"
             type={shown ? 'text' : 'password'}
             {...register('password', {
-              required: { value: true, message: 'Password is required' },
+              required: { value: true, message: text[lang].passreq },
               pattern: {
                 value: passwordRegEx,
-                message: 'Should contain at least one letter, one digit, one special character',
+                message: text[lang].passredx,
               },
-              minLength: { value: 8, message: 'Should be at least 8 chars' },
+              minLength: { value: 8, message: text[lang].minlength },
             })}
           />
           <IconButton className="visibilityIcon" onClick={() => setShown(!shown)}>
@@ -83,7 +123,7 @@ function Signup() {
         </div>
         {errors.password && <InputError message={errors.password.message} />}
         <Button type="submit" variant="contained" sx={{ width: '100%' }}>
-          SIGN UP
+          {text[lang].signup}
         </Button>
       </form>
     </div>
