@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Editor.scss';
+import CodeMirror from '@uiw/react-codemirror';
 import { IconButton } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Subquest from '../Subquest/Subquest';
@@ -22,12 +23,12 @@ const request = async (query: string): Promise<string> => {
 };
 
 function Editor() {
-  const [requestContent, setRequestContent] = useState('Request');
+  const [requestContent, setRequestContent] = useState('query {}');
   const [response, setResponse] = useState('');
 
   const handleReqest = async () => {
     const data = await request(requestContent);
-    if (data) setResponse(JSON.stringify(data, null, 2));
+    if (data) setResponse(data);
   };
 
   console.log(response);
@@ -36,11 +37,14 @@ function Editor() {
     <section className="editor">
       <div className="wrapper">
         <div className="request">
-          <textarea
-            className="request_area"
-            value={requestContent}
-            onChange={(e) => setRequestContent(e.target.value)}
-          />
+          <div className="request_area">
+            <CodeMirror
+              value={requestContent}
+              height="100%"
+              width="100%"
+              onChange={(value) => setRequestContent(value)}
+            />
+          </div>
           <IconButton className="reqestBtn" onClick={handleReqest}>
             <PlayCircleIcon
               className="reqestIcon"

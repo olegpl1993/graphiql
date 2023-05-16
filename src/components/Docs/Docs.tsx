@@ -26,7 +26,22 @@ function Docs() {
       <div className={isOpenDocs ? 'docs_text _open' : 'docs_text'}>
         <div className="docs_box">
           <p>
-            {'{characters(page: 1, filter: {name: "rick"}) {info {count}results {name}}location(id: 1) {id}episodesByIds(ids: [1, 2]) {id}}'}
+            {`query {
+  characters(page: 2, filter: { name: "rick" }) {
+    info {
+      count
+    }
+    results {
+      name
+    }
+  }
+  location(id: 1) {
+    id
+  }
+  episodesByIds(ids: [1, 2]) {
+    id
+  }
+}`}
           </p>
         </div>
       </div>
