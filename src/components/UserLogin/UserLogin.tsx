@@ -4,24 +4,24 @@ import { Button } from '@mui/material';
 import { getAuth, signOut } from 'firebase/auth';
 import { useAppSelector } from '../../hook';
 
+interface TextKey {
+  logout: string;
+}
+interface Text {
+  [key: string]: TextKey;
+}
+const text: Text = {
+  en: {
+    logout: 'log out',
+  },
+  ru: {
+    logout: 'выйти',
+  },
+};
+
 function LoginRowBtn() {
-  // lang -------------------------------------------------------------------
   const lang = useAppSelector((state) => state.langState.lang);
-  interface TextKey {
-    logout: string;
-  }
-  interface Text {
-    [key: string]: TextKey;
-  }
-  const text: Text = {
-    en: {
-      logout: 'log out',
-    },
-    ru: {
-      logout: 'выйти',
-    },
-  };
-  // ----------------------------------------------------------------------------
+
   const userState = useAppSelector((state) => state.userState.user);
   const handleLogOut = () => {
     const auth = getAuth();
