@@ -61,7 +61,7 @@ function Main() {
             <div className="developer">
               <img src={brokenImage} alt="ava" height={200} />
               <div className="col">
-                <div className="position">Full-Stack developer</div>
+                <div className="position">Front-end developer</div>
                 <div className="name">Dzmitry Shiwe</div>
               </div>
               <div className="col">
