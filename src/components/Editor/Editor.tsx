@@ -25,6 +25,8 @@ const request = async (query: string): Promise<string> => {
 function Editor() {
   const [requestContent, setRequestContent] = useState('query {}');
   const [response, setResponse] = useState('');
+  const [headersContent, setHeadersContent] = useState('Headers');
+  const [variablesContent, setVariablesContent] = useState('Variables');
 
   const handleReqest = async () => {
     const data = await request(requestContent);
@@ -53,7 +55,12 @@ function Editor() {
             />
           </IconButton>
         </div>
-        <Subquest />
+        <Subquest
+          headersContent={headersContent}
+          setHeadersContent={setHeadersContent}
+          variablesContent={variablesContent}
+          setVariablesContent={setVariablesContent}
+        />
       </div>
       <Response response={response} />
     </section>

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import './Subquest.scss';
+import CodeMirror from '@uiw/react-codemirror';
 import { Button, IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -23,7 +24,15 @@ const text: Text = {
   },
 };
 
-function Subquest() {
+interface Props {
+  headersContent: string;
+  setHeadersContent: Dispatch<SetStateAction<string>>;
+  variablesContent: string;
+  setVariablesContent: Dispatch<SetStateAction<string>>;
+}
+
+function Subquest(props: Props) {
+  const { headersContent, setHeadersContent, variablesContent, setVariablesContent } = props;
   const lang = useAppSelector((state) => state.langState.lang);
 
   const [headersVariables, setHeadersVariables] = useState(true);
@@ -38,9 +47,6 @@ function Subquest() {
   const handleOpenSubquest = () => {
     setOpenSubquest(!isOpenSubquest);
   };
-
-  const [headersContent, setHeadersContent] = useState('Headers');
-  const [variablesContent, setVariablesContent] = useState('Variables');
 
   return (
     <div className="subquest">
@@ -63,16 +69,18 @@ function Subquest() {
       </div>
       <div className={isOpenSubquest ? 'subquest_box _open' : 'subquest_box'}>
         {headersVariables ? (
-          <textarea
-            className="headers_area"
+          <CodeMirror
             value={headersContent}
-            onChange={(e) => setHeadersContent(e.target.value)}
+            height="100%"
+            width="100%"
+            onChange={(value) => setHeadersContent(value)}
           />
         ) : (
-          <textarea
-            className="variables_area"
+          <CodeMirror
             value={variablesContent}
-            onChange={(e) => setVariablesContent(e.target.value)}
+            height="100%"
+            width="100%"
+            onChange={(value) => setVariablesContent(value)}
           />
         )}
       </div>
