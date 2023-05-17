@@ -3,10 +3,22 @@
   width: 100%;
   padding: 3px;
   display: flex;
-  flex-direction: column;
-  border-right: 1px solid rgb(200, 200, 200);
+  flex-direction: row;
   @media (max-width: 1023px) {
     border-right: none;
+    flex-direction: column;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    border-right: 1px solid rgb(200, 200, 200);
+    @media (max-width: 1023px) {
+      width: 100%;
+      border-right: none;
+    }
   }
 
   .request {
@@ -16,6 +28,7 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
+    position: relative;
 
     &_area {
       resize: none;
@@ -23,6 +36,25 @@
       min-width: 100%;
       padding: 10px;
       background-color: rgb(240, 240, 240);
+      padding-right: 50px;
+      @media (max-width: 1023px) {
+        padding-right: 40px;
+      }
+    }
+
+    .reqestBtn {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      .reqestIcon {
+        height: 40px;
+        width: 40px;
+        @media (max-width: 1023px) {
+          height: 30px;
+          width: 30px;
+        }
+      }
     }
   }
 }
