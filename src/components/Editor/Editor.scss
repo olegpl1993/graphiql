@@ -29,6 +29,7 @@
     flex-direction: column;
     gap: 3px;
     position: relative;
+    overflow: auto;
 
     &_area {
       resize: none;
