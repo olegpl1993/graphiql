@@ -28,6 +28,7 @@
         "tsx": "never"
       }
     ],
+    "import/no-extraneous-dependencies": "off",
     "object-curly-newline": "off", 
     "no-param-reassign": ["error", { "props": false }],
     "no-console": "off",
