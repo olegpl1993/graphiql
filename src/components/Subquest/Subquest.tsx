@@ -5,25 +5,26 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector } from '../../hook';
 
+interface TextKey {
+  header: string;
+  variable: string;
+}
+interface Text {
+  [key: string]: TextKey;
+}
+const text: Text = {
+  en: {
+    header: 'Headers',
+    variable: 'Variables',
+  },
+  ru: {
+    header: 'Заголовок',
+    variable: 'Переменные',
+  },
+};
+
 function Subquest() {
   const lang = useAppSelector((state) => state.langState.lang);
-  interface TextKey {
-    header: string;
-    variable: string;
-  }
-  interface Text {
-    [key: string]: TextKey;
-  }
-  const text: Text = {
-    en: {
-      header: 'Headers',
-      variable: 'Variables',
-    },
-    ru: {
-      header: 'Заголовок',
-      variable: 'Переменные',
-    },
-  };
 
   const [headersVariables, setHeadersVariables] = useState(true);
   const handleHeaders = () => {

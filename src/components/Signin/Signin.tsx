@@ -12,6 +12,30 @@ import {
   changeSuccess,
 } from '../../store/snackbarSlice';
 
+interface TextKey {
+  titlesigin: string;
+  signin: string;
+  success: string;
+  faill: string;
+}
+interface Text {
+  [key: string]: TextKey;
+}
+const text: Text = {
+  en: {
+    titlesigin: 'Authorization',
+    signin: 'SIGN IN',
+    success: 'Login successfully!',
+    faill: 'Login failure!',
+  },
+  ru: {
+    titlesigin: 'Авторизация',
+    signin: 'ВОЙТИ',
+    success: 'Вход успешен',
+    faill: 'Вход не удался',
+  },
+};
+
 interface FormLogin {
   email: string;
   password: string;
@@ -26,29 +50,6 @@ function Signin() {
   };
 
   const lang = useAppSelector((state) => state.langState.lang);
-  interface TextKey {
-    titlesigin: string;
-    signin: string;
-    success: string;
-    faill: string;
-  }
-  interface Text {
-    [key: string]: TextKey;
-  }
-  const text: Text = {
-    en: {
-      titlesigin: 'Authorization',
-      signin: 'SIGN IN',
-      success: 'Login successfully!',
-      faill: 'Login failure!',
-    },
-    ru: {
-      titlesigin: 'Авторизация',
-      signin: 'ВОЙТИ',
-      success: 'Вход успешен',
-      faill: 'Вход не удался',
-    },
-  };
 
   const { register, handleSubmit } = useForm<FormLogin>();
   const [shown, setShown] = useState(false);
