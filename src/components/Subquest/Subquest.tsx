@@ -3,8 +3,28 @@ import './Subquest.scss';
 import { Button, IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useAppSelector } from '../../hook';
 
 function Subquest() {
+  const lang = useAppSelector((state) => state.langState.lang);
+  interface TextKey {
+    header: string;
+    variable: string;
+  }
+  interface Text {
+    [key: string]: TextKey;
+  }
+  const text: Text = {
+    en: {
+      header: 'Headers',
+      variable: 'Variables',
+    },
+    ru: {
+      header: 'Заголовок',
+      variable: 'Переменные',
+    },
+  };
+
   const [headersVariables, setHeadersVariables] = useState(true);
   const handleHeaders = () => {
     setHeadersVariables(true);
@@ -26,10 +46,10 @@ function Subquest() {
       <div className="subquest_btnRow">
         <div className="startBtn">
           <Button variant="contained" onClick={handleHeaders}>
-            Headers
+            {text[lang].header}
           </Button>
           <Button variant="contained" onClick={handleVariables}>
-            Variables
+            {text[lang].variable}
           </Button>
         </div>
         <IconButton onClick={handleOpenSubquest}>
