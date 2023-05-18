@@ -5,6 +5,7 @@ import { IconButton } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Subquest from '../Subquest/Subquest';
 import Response from '../Response/Response';
+import Docs from '../Docs/Docs';
 
 const url = 'https://rickandmortyapi.com/graphql';
 
@@ -37,6 +38,7 @@ function Editor() {
 
   return (
     <section className="editor">
+      <Docs />
       <div className="wrapper">
         <div className="request">
           <div className="request_area">

@@ -10,22 +10,19 @@ function Docs() {
   };
 
   return (
-    <section className={isOpenDocs ? 'docs _open' : 'docs'}>
-      <div className="docs_row">
-        <div className="docs_openBtn">
-          <IconButton onClick={handleOpenDocs}>
-            {isOpenDocs ? (
-              <DescriptionIcon fontSize="large" sx={{ color: 'rgb(255, 0, 187)' }} />
-            ) : (
-              <DescriptionIcon fontSize="large" color="primary" />
-            )}
-          </IconButton>
-        </div>
+    <section className="docs">
+      <div className="btnRow">
+        <IconButton className="docsOpenBtn" onClick={handleOpenDocs}>
+          {isOpenDocs ? (
+            <DescriptionIcon fontSize="large" sx={{ color: 'rgb(255, 0, 187)' }} />
+          ) : (
+            <DescriptionIcon fontSize="large" color="primary" />
+          )}
+        </IconButton>
       </div>
-
-      <div className={isOpenDocs ? 'docs_text _open' : 'docs_text'}>
-        <div className="docs_box">
-          <p>
+      {isOpenDocs && (
+        <div className="docsText">
+          <div className="docsBox">
             {`query {
   characters(page: 2, filter: { name: "rick" }) {
     info {
@@ -42,9 +39,9 @@ function Docs() {
     id
   }
 }`}
-          </p>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
