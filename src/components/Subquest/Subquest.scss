@@ -1,6 +1,5 @@
 .subquest {
   width: 100%;
-  padding: 1px;
   display: flex;
   flex-direction: column;
 
@@ -22,15 +21,17 @@
   }
 
   &_box {
-    padding: 1px;
     transform: scale(1, 0);
     transition: all 0.2s ease;
     height: 0px;
-    padding: 10px;
     overflow: auto;
     &._open {
+      padding: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       transform: scale(1, 1);
       height: 150px;
+      border-bottom: 1px solid rgb(200, 200, 200);
     }
   }
 }
