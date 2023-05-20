@@ -35,11 +35,11 @@ function Subquest(props: Props) {
     <div className="subquest">
       <div className="subquest_btnRow">
         <div className="startBtn">
-          <Button variant="contained" onClick={handleHeaders}>
-            {text[lang].headerGraph}
-          </Button>
           <Button variant="contained" onClick={handleVariables}>
             {text[lang].variableGraph}
+          </Button>
+          <Button variant="contained" onClick={handleHeaders}>
+            {text[lang].headerGraph}
           </Button>
         </div>
         <IconButton onClick={handleOpenSubquest}>

@@ -9,15 +9,13 @@ import Docs from '../Docs/Docs';
 
 const url = 'https://rickandmortyapi.com/graphql';
 
-const request = async (query: string): Promise<string> => {
+const request = async (query: string, variables: string, headers: string): Promise<string> => {
   const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-type': 'application/json',
-    },
+    headers: JSON.parse(headers),
     body: JSON.stringify({
       query,
-      variables: {},
+      variables: JSON.parse(variables),
     }),
   });
   return res.json();
@@ -26,11 +24,11 @@ const request = async (query: string): Promise<string> => {
 function Editor() {
   const [requestContent, setRequestContent] = useState('query {}');
   const [response, setResponse] = useState('');
-  const [headersContent, setHeadersContent] = useState('Headers');
-  const [variablesContent, setVariablesContent] = useState('Variables');
+  const [headersContent, setHeadersContent] = useState('{ "Content-type": "application/json" }');
+  const [variablesContent, setVariablesContent] = useState('{}');
 
   const handleReqest = async () => {
-    const data = await request(requestContent);
+    const data = await request(requestContent, variablesContent, headersContent);
     if (data) setResponse(data);
   };
 
