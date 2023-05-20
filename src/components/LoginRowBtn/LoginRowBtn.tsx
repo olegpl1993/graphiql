@@ -7,24 +7,6 @@ import Signin from '../Signin/Signin';
 import Signup from '../Signup/Signup';
 import text from '../../language/Language';
 
-// interface TextKey {
-//   signinHeader: string;
-//   signupHeader: string;
-// }
-// interface Text {
-//   [key: string]: TextKey;
-// }
-// const text: Text = {
-//   en: {
-//     signinHeader: 'sign in',
-//     signupHeader: 'sign up',
-//   },
-//   ru: {
-//     signinHeader: 'войти',
-//     signupHeader: 'регистрация',
-//   },
-// };
-
 function LoginRowBtn() {
   const lang = useAppSelector((state) => state.langState.lang);
 

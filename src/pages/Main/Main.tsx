@@ -8,55 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../hook';
 import { changeIsOpenSnackbar } from '../../store/snackbarSlice';
 import text from '../../language/Language';
 
-// interface TextKey {
-//   title: string;
-//   titledev: string;
-//   tileproject: string;
-//   nameteam: string;
-//   namedevelop1: string;
-//   namedevelop2: string;
-//   deposit: string;
-//   tecstack: string;
-//   community: string;
-// }
-// interface Text {
-//   [key: string]: TextKey;
-// }
-// const text: Text = {
-//   en: {
-//     title: 'GraphiQL is a playground/IDE for graphQL requests.',
-//     titledev: 'Developers',
-// eslint-disable-next-line max-len
-//     tileproject: This app is the final project of React Course - The Rolling Scopes School. The project
-//                   was developed by a team of three students.,
-//     nameteam: 'Oleh Pluhatyrov',
-//     namedevelop1: 'Dzmitry Shiwe',
-//     namedevelop2: 'Maryia Pashkovich',
-//     deposit: 'Contribution',
-//     tecstack: 'Technical stack:',
-// eslint-disable-next-line max-len
-//     community: `RS School is free-of-charge and community-based education program conducted by The
-//                 Rolling Scopes developer community since 2013. Everyone can study at RS School,
-//                 regardless of age, professional employment, or place of residence.`,
-//   },
-//   ru: {
-//     title: 'GraphiQL — это приложение/IDE для graphQL запросов.',
-//     titledev: 'Разработчики',
-// eslint-disable-next-line max-len
-//     tileproject: `Это приложение является финальным проектом React Course - The Rolling Scopes School. Проект
-//                   был разработан командой из трех студентов.`,
-//     nameteam: 'Олег Плугатырёв',
-//     namedevelop1: 'Дмитрий Шиве',
-//     namedevelop2: 'Мария Пашкович',
-//     deposit: 'Вклад в проект',
-//     tecstack: 'Используемые технологии',
-//     community: `RS School — это бесплатная образовательная программа, проводимая
-// eslint-disable-next-line max-len
-//                 сообществом разработчиков The Rolling Scopes с 2013 года. Учиться в RS School может каждый,
-//                 независимо от возраста, профессиональной занятости или места жительства.`,
-//   },
-// };
-
 function Main() {
   const { isOpenSnackbar, success, snackbarMessage } = useAppSelector(
     (state) => state.snackbarState

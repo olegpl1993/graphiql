@@ -5,21 +5,6 @@ import { getAuth, signOut } from 'firebase/auth';
 import { useAppSelector } from '../../hook';
 import text from '../../language/Language';
 
-// interface TextKey {
-//   logout: string;
-// }
-// interface Text {
-//   [key: string]: TextKey;
-// }
-// const text: Text = {
-//   en: {
-//     logout: 'log out',
-//   },
-//   ru: {
-//     logout: 'выйти',
-//   },
-// };
-
 function LoginRowBtn() {
   const lang = useAppSelector((state) => state.langState.lang);
 

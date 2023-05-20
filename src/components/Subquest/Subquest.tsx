@@ -6,23 +6,6 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector } from '../../hook';
 import text from '../../language/Language';
-// interface TextKey {
-//   header: string;
-//   variable: string;
-// }
-// interface Text {
-//   [key: string]: TextKey;
-// }
-// const text: Text = {
-//   en: {
-//     header: 'Headers',
-//     variable: 'Variables',
-//   },
-//   ru: {
-//     header: 'Заголовок',
-//     variable: 'Переменные',
-//   },
-// };
 
 interface Props {
   headersContent: string;

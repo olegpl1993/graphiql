@@ -14,45 +14,6 @@ import {
 } from '../../store/snackbarSlice';
 import text from '../../language/Language';
 
-// interface TextKey {
-//   titlesigup: string;
-//   signup: string;
-//   success: string;
-//   faill: string;
-//   mailreq: string;
-//   mailredx: string;
-//   passreq: string;
-//   passredx: string;
-//   minlength: string;
-// }
-// interface Text {
-//   [key: string]: TextKey;
-// }
-// const text: Text = {
-//   en: {
-//     titlesigup: 'Registration',
-//     signup: 'SIGN UP',
-//     success: 'Successful registration!',
-//     faill: 'Registration failure!',
-//     mailreq: 'Email is required',
-//     mailredx: 'Enter valid E-mail',
-//     passreq: 'Password is required',
-//     passredx: 'Should contain at least one letter, one digit, one special character',
-//     minlength: 'Should be at least 8 chars',
-//   },
-//   ru: {
-//     titlesigup: 'Зарегаться',
-//     signup: 'РЕГИСТРАЦИЯ',
-//     success: 'Регистрация успеша',
-//     faill: 'Регистрация не удалась',
-//     mailreq: 'Электронная почта',
-//     mailredx: 'Действительная эл. почта',
-//     passreq: 'Введите пароль',
-//     passredx: 'Должен содержать хотя бы одну букву, одну цифру, один специальный символ',
-//     minlength: 'Должно быть не менее 8 символов',
-//   },
-// };
-
 interface FormRegistr {
   email: string;
   password: string;
