@@ -40,8 +40,6 @@ function Editor() {
     if (data) setResponse(data);
   };
 
-  console.log(response);
-
   return (
     <section className="editor">
       <Docs />
