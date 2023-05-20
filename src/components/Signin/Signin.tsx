@@ -11,30 +11,31 @@ import {
   changeSnackbarMessage,
   changeSuccess,
 } from '../../store/snackbarSlice';
+import text from '../../language/Language';
 
-interface TextKey {
-  titlesigin: string;
-  signin: string;
-  success: string;
-  faill: string;
-}
-interface Text {
-  [key: string]: TextKey;
-}
-const text: Text = {
-  en: {
-    titlesigin: 'Authorization',
-    signin: 'SIGN IN',
-    success: 'Login successfully!',
-    faill: 'Login failure!',
-  },
-  ru: {
-    titlesigin: 'Авторизация',
-    signin: 'ВОЙТИ',
-    success: 'Вход успешен',
-    faill: 'Вход не удался',
-  },
-};
+// interface TextKey {
+//   titlesigin: string;
+//   signin: string;
+//   success: string;
+//   faill: string;
+// }
+// interface Text {
+//   [key: string]: TextKey;
+// }
+// const text: Text = {
+//   en: {
+//     titlesigin: 'Authorization',
+//     signin: 'SIGN IN',
+//     success: 'Login successfully!',
+//     faill: 'Login failure!',
+//   },
+//   ru: {
+//     titlesigin: 'Авторизация',
+//     signin: 'ВОЙТИ',
+//     success: 'Вход успешен',
+//     faill: 'Вход не удался',
+//   },
+// };
 
 interface FormLogin {
   email: string;
@@ -59,10 +60,10 @@ function Signin() {
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        if (user) openSnackbar(true, text[lang].success);
+        if (user) openSnackbar(true, text[lang].successin);
       })
       .catch(() => {
-        openSnackbar(false, text[lang].faill);
+        openSnackbar(false, text[lang].faillin);
       });
   };
 

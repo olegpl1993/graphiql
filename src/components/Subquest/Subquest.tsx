@@ -5,24 +5,24 @@ import { Button, IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector } from '../../hook';
-
-interface TextKey {
-  header: string;
-  variable: string;
-}
-interface Text {
-  [key: string]: TextKey;
-}
-const text: Text = {
-  en: {
-    header: 'Headers',
-    variable: 'Variables',
-  },
-  ru: {
-    header: 'Заголовок',
-    variable: 'Переменные',
-  },
-};
+import text from '../../language/Language';
+// interface TextKey {
+//   header: string;
+//   variable: string;
+// }
+// interface Text {
+//   [key: string]: TextKey;
+// }
+// const text: Text = {
+//   en: {
+//     header: 'Headers',
+//     variable: 'Variables',
+//   },
+//   ru: {
+//     header: 'Заголовок',
+//     variable: 'Переменные',
+//   },
+// };
 
 interface Props {
   headersContent: string;
@@ -53,10 +53,10 @@ function Subquest(props: Props) {
       <div className="subquest_btnRow">
         <div className="startBtn">
           <Button variant="contained" onClick={handleHeaders}>
-            {text[lang].header}
+            {text[lang].headerGraph}
           </Button>
           <Button variant="contained" onClick={handleVariables}>
-            {text[lang].variable}
+            {text[lang].variableGraph}
           </Button>
         </div>
         <IconButton onClick={handleOpenSubquest}>

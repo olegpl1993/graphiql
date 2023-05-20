@@ -7,9 +7,11 @@ import LoginRowBtn from '../LoginRowBtn/LoginRowBtn';
 import UserLogin from '../UserLogin/UserLogin';
 import { useAppSelector } from '../../hook';
 import graphqlLogo from '../../assets/graphqlLogo.svg';
+import text from '../../language/Language';
 
 function Header() {
   const isAuth = useAppSelector((state) => state.userState.isAuth);
+  const lang = useAppSelector((state) => state.langState.lang);
 
   const [isScroll, setIsScroll] = useState(false);
   window.addEventListener('scroll', () => {
@@ -28,7 +30,7 @@ function Header() {
         {isAuth && (
           <nav className="navigation">
             <NavLink to="/graphiql">
-              <Button variant="outlined">Code editor</Button>
+              <Button variant="outlined">{text[lang].graphEditor}</Button>
             </NavLink>
           </nav>
         )}
