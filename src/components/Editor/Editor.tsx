@@ -5,6 +5,7 @@ import { IconButton } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Subquest from '../Subquest/Subquest';
 import Response from '../Response/Response';
+import Docs from '../Docs/Docs';
 
 const url = 'https://rickandmortyapi.com/graphql';
 
@@ -25,6 +26,8 @@ const request = async (query: string): Promise<string> => {
 function Editor() {
   const [requestContent, setRequestContent] = useState('query {}');
   const [response, setResponse] = useState('');
+  const [headersContent, setHeadersContent] = useState('Headers');
+  const [variablesContent, setVariablesContent] = useState('Variables');
 
   const handleReqest = async () => {
     const data = await request(requestContent);
@@ -35,6 +38,7 @@ function Editor() {
 
   return (
     <section className="editor">
+      <Docs />
       <div className="wrapper">
         <div className="request">
           <div className="request_area">
@@ -53,7 +57,12 @@ function Editor() {
             />
           </IconButton>
         </div>
-        <Subquest />
+        <Subquest
+          headersContent={headersContent}
+          setHeadersContent={setHeadersContent}
+          variablesContent={variablesContent}
+          setVariablesContent={setVariablesContent}
+        />
       </div>
       <Response response={response} />
     </section>
