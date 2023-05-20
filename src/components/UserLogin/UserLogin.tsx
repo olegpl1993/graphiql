@@ -3,21 +3,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { getAuth, signOut } from 'firebase/auth';
 import { useAppSelector } from '../../hook';
-
-interface TextKey {
-  logout: string;
-}
-interface Text {
-  [key: string]: TextKey;
-}
-const text: Text = {
-  en: {
-    logout: 'log out',
-  },
-  ru: {
-    logout: 'выйти',
-  },
-};
+import text from '../../language/Language';
 
 function LoginRowBtn() {
   const lang = useAppSelector((state) => state.langState.lang);

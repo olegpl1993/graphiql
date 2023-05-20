@@ -5,24 +5,7 @@ import { useAppSelector } from '../../hook';
 import Modal from '../Modal/Modal';
 import Signin from '../Signin/Signin';
 import Signup from '../Signup/Signup';
-
-interface TextKey {
-  signin: string;
-  signup: string;
-}
-interface Text {
-  [key: string]: TextKey;
-}
-const text: Text = {
-  en: {
-    signin: 'sign in',
-    signup: 'sign up',
-  },
-  ru: {
-    signin: 'войти',
-    signup: 'регистрация',
-  },
-};
+import text from '../../language/Language';
 
 function LoginRowBtn() {
   const lang = useAppSelector((state) => state.langState.lang);
@@ -45,10 +28,10 @@ function LoginRowBtn() {
 
       <div className="loginRowBtn">
         <Button variant="contained" onClick={() => setSigninModalActiv(true)}>
-          {text[lang].signin}
+          {text[lang].signinHeader}
         </Button>
         <Button variant="contained" onClick={() => setSignupModalActiv(true)}>
-          {text[lang].signup}
+          {text[lang].signupHeader}
         </Button>
       </div>
     </>
