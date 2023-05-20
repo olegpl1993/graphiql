@@ -23,22 +23,15 @@ function Docs() {
       {isOpenDocs && (
         <div className="docsText">
           <div className="docsBox">
-            {`query {
-  characters(page: 2, filter: { name: "rick" }) {
-    info {
-      count
-    }
-    results {
-      name
-    }
-  }
-  location(id: 1) {
-    id
-  }
-  episodesByIds(ids: [1, 2]) {
-    id
-  }
-}`}
+            <p>Example query without variable:</p>
+            <p>{'query { characters(page: 1, filter: { name: "Alien" }) { info { count } results { name } } }'}</p>
+            <br />
+            <br />
+            <p>Example query:</p>
+            <p>{'query ($pageNumber: Int, $nameChar: String) { characters(page: $pageNumber, filter: { name: $nameChar }) { info { count } results { name } } }'}</p>
+            <br />
+            <p>Example variable:</p>
+            <p>{'{ "pageNumber": 1, "nameChar": "Alien" }'}</p>
           </div>
         </div>
       )}
