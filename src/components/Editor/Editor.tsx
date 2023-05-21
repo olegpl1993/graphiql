@@ -35,7 +35,7 @@ function Editor() {
   const [headersContent, setHeadersContent] = useState('');
   const [variablesContent, setVariablesContent] = useState('');
 
-  const handleReqest = async () => {
+  const handleRequest = async () => {
     const data = await request(requestContent, variablesContent, headersContent);
     if (data) setResponse(data);
   };
@@ -53,9 +53,9 @@ function Editor() {
               onChange={(value) => setRequestContent(value)}
             />
           </div>
-          <IconButton className="reqestBtn" onClick={handleReqest}>
+          <IconButton className="requestBtn" onClick={handleRequest}>
             <PlayCircleIcon
-              className="reqestIcon"
+              className="requestIcon"
               fontSize="large"
               sx={{ color: 'rgb(255, 0, 187)' }}
             />

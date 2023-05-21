@@ -10,27 +10,27 @@ import text from '../../language/Language';
 function LoginRowBtn() {
   const lang = useAppSelector((state) => state.langState.lang);
 
-  const [signinModalActiv, setSigninModalActiv] = useState(false);
-  const [signupModalActiv, setSignupModalActiv] = useState(false);
+  const [signinModalActive, setSigninModalActive] = useState(false);
+  const [signupModalActive, setSignupModalActive] = useState(false);
 
   return (
     <>
-      {signinModalActiv && (
-        <Modal modalActiv={signinModalActiv} setModalActiv={setSigninModalActiv}>
+      {signinModalActive && (
+        <Modal modalActive={signinModalActive} setModalActive={setSigninModalActive}>
           <Signin />
         </Modal>
       )}
-      {signupModalActiv && (
-        <Modal modalActiv={signupModalActiv} setModalActiv={setSignupModalActiv}>
+      {signupModalActive && (
+        <Modal modalActive={signupModalActive} setModalActive={setSignupModalActive}>
           <Signup />
         </Modal>
       )}
 
       <div className="loginRowBtn">
-        <Button variant="contained" onClick={() => setSigninModalActiv(true)}>
+        <Button variant="contained" onClick={() => setSigninModalActive(true)}>
           {text[lang].signinHeader}
         </Button>
-        <Button variant="contained" onClick={() => setSignupModalActiv(true)}>
+        <Button variant="contained" onClick={() => setSignupModalActive(true)}>
           {text[lang].signupHeader}
         </Button>
       </div>
