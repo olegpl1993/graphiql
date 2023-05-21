@@ -18,7 +18,7 @@ function RouteBtn() {
     <nav className="routeBtn">
       {isGraphiqlPath ? (
         <NavLink to="/">
-          <Button variant="outlined">Welcome Page</Button>
+          <Button variant="outlined">{text[lang].welcomePage}</Button>
         </NavLink>
       ) : (
         <NavLink to="/graphiql">
