@@ -28,6 +28,7 @@ interface TextKey {
   tecstack: string;
   community: string;
   texterror: string;
+  welcomePage: string;
 }
 
 interface Text {
@@ -68,6 +69,7 @@ const text: Text = {
                 Rolling Scopes developer community since 2013. Everyone can study at RS School,
                 regardless of age, professional employment, or place of residence.`,
     texterror: 'Error 404: Page not found',
+    welcomePage: 'Welcome Page',
   },
   ru: {
     graphEditor: 'Редактор кода',
@@ -102,6 +104,7 @@ const text: Text = {
                 сообществом разработчиков The Rolling Scopes с 2013 года. Учиться в RS School может каждый,
                 независимо от возраста, профессиональной занятости или места жительства.`,
     texterror: 'Ошибка 404 - Страница Не Найдена',
+    welcomePage: 'На главную',
   },
 };
 
