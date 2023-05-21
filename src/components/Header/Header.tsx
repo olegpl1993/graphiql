@@ -1,5 +1,5 @@
 import './Header.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import LangSelect from '../LangSelect/LangSelect';
@@ -14,9 +14,15 @@ function Header() {
   const lang = useAppSelector((state) => state.langState.lang);
 
   const [isScroll, setIsScroll] = useState(false);
-  window.addEventListener('scroll', () => {
+  const scrollEvent = () => {
     setIsScroll(!!window.pageYOffset);
-  });
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', scrollEvent);
+    return () => {
+      window.removeEventListener('scroll', scrollEvent);
+    };
+  }, []);
 
   return (
     <div className={isScroll ? 'header _scroll' : 'header'}>
