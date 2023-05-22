@@ -34,10 +34,13 @@ function Editor() {
   const [response, setResponse] = useState('');
   const [headersContent, setHeadersContent] = useState('');
   const [variablesContent, setVariablesContent] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleRequest = async () => {
+    setLoading(true);
     const data = await request(requestContent, variablesContent, headersContent);
     if (data) setResponse(data);
+    setLoading(false);
   };
 
   return (
@@ -68,7 +71,7 @@ function Editor() {
           setVariablesContent={setVariablesContent}
         />
       </div>
-      <Response response={response} />
+      <Response loading={loading} response={response} />
     </section>
   );
 }
