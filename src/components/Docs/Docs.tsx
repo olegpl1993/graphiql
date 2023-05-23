@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import './Docs.scss';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton } from '@mui/material';
+import { GraphQLSchema } from 'graphql';
 
-function Docs() {
+interface Props {
+  schema: GraphQLSchema | null;
+}
+
+function Docs(props: Props) {
+  const { schema } = props;
   const [isOpenDocs, setOpenDocs] = useState(false);
   const handleOpenDocs = () => {
     setOpenDocs(!isOpenDocs);
   };
+
+  console.log(schema);
 
   return (
     <section className="docs">
@@ -32,6 +40,7 @@ function Docs() {
             <br />
             <p>Example variable:</p>
             <p>{'{ "pageNumber": 1, "nameChar": "Alien" }'}</p>
+            <div className="schema">Schema</div>
           </div>
         </div>
       )}
