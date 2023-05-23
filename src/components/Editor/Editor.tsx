@@ -38,8 +38,13 @@ function Editor() {
 
   const handleRequest = async () => {
     setLoading(true);
-    const data = await request(requestContent, variablesContent, headersContent);
-    if (data) setResponse(data);
+    try {
+      const data = await request(requestContent, variablesContent, headersContent);
+      setResponse(data);
+    } catch (e) {
+      const { message } = (e as Error);
+      setResponse(message);
+    }
     setLoading(false);
   };
 
