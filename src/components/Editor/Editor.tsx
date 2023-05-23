@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Editor.scss';
 import CodeMirror from '@uiw/react-codemirror';
 import { IconButton } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import { GraphQLSchema, getIntrospectionQuery } from 'graphql';
 import Subquest from '../Subquest/Subquest';
 import Response from '../Response/Response';
 import Docs from '../Docs/Docs';
@@ -30,33 +29,12 @@ const request = async (
   return res.json();
 };
 
-const requestSchema = async () => {
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: getIntrospectionQuery(),
-    }),
-  });
-  const response = await res.json();
-  return response.data.__schema;
-};
-
 function Editor() {
   const [requestContent, setRequestContent] = useState('query {}');
   const [response, setResponse] = useState('');
   const [headersContent, setHeadersContent] = useState('');
   const [variablesContent, setVariablesContent] = useState('');
   const [loading, setLoading] = useState(false);
-  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      setSchema(await requestSchema());
-    })();
-  }, []);
 
   const handleRequest = async () => {
     setLoading(true);
@@ -72,7 +50,7 @@ function Editor() {
 
   return (
     <section className="editor">
-      <Docs schema={schema} />
+      <Docs />
       <div className="wrapper">
         <div className="request">
           <div className="request_area">

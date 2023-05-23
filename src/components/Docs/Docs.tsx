@@ -1,19 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Docs.scss';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton } from '@mui/material';
-import { GraphQLSchema } from 'graphql';
+import { GraphQLSchema, getIntrospectionQuery } from 'graphql';
 
-interface Props {
-  schema: GraphQLSchema | null;
-}
+const url = 'https://rickandmortyapi.com/graphql';
 
-function Docs(props: Props) {
-  const { schema } = props;
+const requestSchema = async () => {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: getIntrospectionQuery(),
+    }),
+  });
+  const response = await res.json();
+  return response.data.__schema;
+};
+
+function Docs() {
   const [isOpenDocs, setOpenDocs] = useState(false);
   const handleOpenDocs = () => {
     setOpenDocs(!isOpenDocs);
   };
+
+  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      setSchema(await requestSchema());
+    })();
+  }, []);
 
   console.log(schema);
 
