@@ -6,16 +6,8 @@ import { githubLight } from '@uiw/codemirror-theme-github';
 import Spinner from '../Spinner/Spinner';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { setResponse } from '../../store/responseSlice';
-// import { setLoading } from '../../store/loadingSlice';
-
-// interface Props {
-// response: string;
-// loading: boolean;
-// }
 
 function Response() {
-  // const { response, loading } = props;
-  // const { response } = props;
   const resp = useAppSelector((state) => state.responseState.resp);
   const loading = useAppSelector((state) => state.loadingState.loads);
   const dispatch = useAppDispatch();

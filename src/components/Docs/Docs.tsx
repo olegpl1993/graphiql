@@ -1,42 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Docs.scss';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton } from '@mui/material';
-import { GraphQLSchema, getIntrospectionQuery, buildClientSchema } from 'graphql';
-import Schema from '../Schema/Schema';
+import RenderDocs from 'create-graphql-docs/RenderDocs';
 
 const url = 'https://rickandmortyapi.com/graphql';
-
-const requestSchema = async () => {
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: getIntrospectionQuery(),
-    }),
-  });
-  const result = await res.json();
-  const schema = buildClientSchema(result.data);
-  return schema;
-};
 
 function Docs() {
   const [isOpenDocs, setOpenDocs] = useState(false);
   const handleOpenDocs = () => {
     setOpenDocs(!isOpenDocs);
   };
-
-  const [schema, setSchema] = useState<GraphQLSchema | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      setSchema(await requestSchema());
-    })();
-  }, []);
-
-  console.log(schema);
 
   return (
     <section className="docs">
@@ -52,7 +26,7 @@ function Docs() {
       {isOpenDocs && (
         <div className="docsText">
           <div className="docsBox">
-            <Schema schema={schema} />
+            <RenderDocs url={url} />
           </div>
         </div>
       )}

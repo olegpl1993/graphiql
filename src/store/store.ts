@@ -4,8 +4,9 @@ import userReducer from './userSlice';
 import snackbarReducer from './snackbarSlice';
 import queryReducer from './querySlice';
 import responseReducer from './responseSlice';
-import variableReducer from './variableSlice';
-import loadingReduser from './loadingSlice';
+import variableReducer from './variablesSlice';
+import loadingReducer from './loadingSlice';
+import headersReducer from './headersSlice';
 
 const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
     queryState: queryReducer,
     responseState: responseReducer,
     variableState: variableReducer,
-    loadingState: loadingReduser,
+    loadingState: loadingReducer,
+    headersState: headersReducer,
   },
 });
 
