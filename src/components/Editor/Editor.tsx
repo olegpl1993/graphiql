@@ -42,7 +42,7 @@ function Editor() {
       const data = await request(requestContent, variablesContent, headersContent);
       setResponse(data);
     } catch (e) {
-      const { message } = (e as Error);
+      const { message } = e as Error;
       setResponse(message);
     }
     setLoading(false);
