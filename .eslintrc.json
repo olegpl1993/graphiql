@@ -28,6 +28,7 @@
         "tsx": "never"
       }
     ],
+    "react/no-unstable-nested-components": "off",
     "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": "off",
     "object-curly-newline": "off", 

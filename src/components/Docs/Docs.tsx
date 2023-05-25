@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Docs.scss';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton } from '@mui/material';
-import { GraphQLSchema, getIntrospectionQuery } from 'graphql';
+import { GraphQLSchema, getIntrospectionQuery, buildClientSchema } from 'graphql';
+import Schema from '../Schema/Schema';
 
 const url = 'https://rickandmortyapi.com/graphql';
 
@@ -16,8 +17,9 @@ const requestSchema = async () => {
       query: getIntrospectionQuery(),
     }),
   });
-  const response = await res.json();
-  return response.data.__schema;
+  const result = await res.json();
+  const schema = buildClientSchema(result.data);
+  return schema;
 };
 
 function Docs() {
@@ -50,16 +52,7 @@ function Docs() {
       {isOpenDocs && (
         <div className="docsText">
           <div className="docsBox">
-            <p>Example query without variable:</p>
-            <p>{'query { characters(page: 1, filter: { name: "Alien" }) { info { count } results { name } } }'}</p>
-            <br />
-            <br />
-            <p>Example query:</p>
-            <p>{'query ($pageNumber: Int, $nameChar: String) { characters(page: $pageNumber, filter: { name: $nameChar }) { info { count } results { name } } }'}</p>
-            <br />
-            <p>Example variable:</p>
-            <p>{'{ "pageNumber": 1, "nameChar": "Alien" }'}</p>
-            <div className="schema">Schema</div>
+            <Schema schema={schema} />
           </div>
         </div>
       )}
