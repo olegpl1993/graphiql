@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import './Subquest.scss';
 import CodeMirror from '@uiw/react-codemirror';
+import { graphql } from 'cm6-graphql';
+import { githubLight } from '@uiw/codemirror-theme-github';
 import { Button, IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -53,16 +55,20 @@ function Subquest(props: Props) {
       <div className={isOpenSubquest ? 'subquest_box _open' : 'subquest_box'}>
         {headersVariables ? (
           <CodeMirror
+            theme={githubLight}
             value={headersContent}
             height="100%"
             width="100%"
+            extensions={[graphql()]}
             onChange={(value) => setHeadersContent(value)}
           />
         ) : (
           <CodeMirror
+            theme={githubLight}
             value={variablesContent}
             height="100%"
             width="100%"
+            extensions={[graphql()]}
             onChange={(value) => setVariablesContent(value)}
           />
         )}
