@@ -10,6 +10,8 @@ import Response from '../Response/Response';
 import Docs from '../Docs/Docs';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { setQuery } from '../../store/querySlice';
+import { setLoading } from '../../store/loadingSlice';
+import { setResponse } from '../../store/responseSlice';
 
 const url = 'https://rickandmortyapi.com/graphql';
 
@@ -36,21 +38,25 @@ const request = async (
 function Editor() {
   const query = useAppSelector((state) => state.queryState.value);
   const dispatch = useAppDispatch();
-  const [response, setResponse] = useState('');
+  // const [response, setResponse] = useState('');
   const [headersContent, setHeadersContent] = useState('');
-  const [variablesContent, setVariablesContent] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [variablesContent, setVariablesContent] = useState('');// ?
+  // const [loading, setLoading] = useState(false);
 
   const handleRequest = async () => {
-    setLoading(true);
+    // setLoading(true);
+    dispatch(setLoading(true));
     try {
       const data = await request(query, variablesContent, headersContent);
-      setResponse(data);
+      // setResponse(data);
+      dispatch(setResponse(data));
     } catch (e) {
       const { message } = e as Error;
-      setResponse(message);
+      // setResponse(message);
+      dispatch(setResponse(message));
     }
-    setLoading(false);
+    // setLoading(false);
+    dispatch(setLoading(false));
   };
 
   return (
@@ -83,7 +89,8 @@ function Editor() {
           setVariablesContent={setVariablesContent}
         />
       </div>
-      <Response loading={loading} response={response} />
+      {/* <Response response={response} /> */}
+      <Response />
     </section>
   );
 }

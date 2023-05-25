@@ -5,6 +5,7 @@ import snackbarReducer from './snackbarSlice';
 import queryReducer from './querySlice';
 import responseReducer from './responseSlice';
 import variableReducer from './variableSlice';
+import loadingReduser from './loadingSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     queryState: queryReducer,
     responseState: responseReducer,
     variableState: variableReducer,
+    loadingState: loadingReduser,
   },
 });
 
