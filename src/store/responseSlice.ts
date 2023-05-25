@@ -1,19 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface InitialState {
-  value: string;
-}
-
-const initialState: InitialState = {
-  value: '',
-};
-
 const responseSlice = createSlice({
   name: 'response',
-  initialState,
+  initialState: {
+    value: '',
+  },
   reducers: {
-    setResponse(state, { payload: { value } }: PayloadAction<InitialState>) {
-      state.value = value;
+    setResponse(state, action: PayloadAction<string>) {
+      state.value = action.payload;
     },
   },
 });
