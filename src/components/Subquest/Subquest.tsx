@@ -6,7 +6,8 @@ import { githubLight } from '@uiw/codemirror-theme-github';
 import { Button, IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useAppSelector } from '../../hook';
+import { useAppSelector, useAppDispatch } from '../../hook';
+import { setVariable } from '../../store/variableSlice';
 import text from '../../language/Language';
 
 interface Props {
@@ -19,7 +20,8 @@ interface Props {
 function Subquest(props: Props) {
   const { headersContent, setHeadersContent, variablesContent, setVariablesContent } = props;
   const lang = useAppSelector((state) => state.langState.lang);
-
+  const variable = useAppSelector((state) => state.variableState.variable);
+  const dispatch = useAppDispatch();
   const [headersVariables, setHeadersVariables] = useState(false);
   const handleHeaders = () => {
     setHeadersVariables(true);
@@ -65,11 +67,13 @@ function Subquest(props: Props) {
         ) : (
           <CodeMirror
             theme={githubLight}
-            value={variablesContent}
+            // value={variablesContent}
+            value={variable}
             height="100%"
             width="100%"
             extensions={[graphql()]}
-            onChange={(value) => setVariablesContent(value)}
+            // onChange={(value) => setVariablesContent(value)}
+            onChange={(value) => dispatch(setVariable(value))}
           />
         )}
       </div>
