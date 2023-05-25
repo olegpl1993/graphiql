@@ -8,6 +8,8 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Subquest from '../Subquest/Subquest';
 import Response from '../Response/Response';
 import Docs from '../Docs/Docs';
+import { useAppDispatch, useAppSelector } from '../../hook';
+import { setQuery } from '../../store/querySlice';
 
 const url = 'https://rickandmortyapi.com/graphql';
 
@@ -32,7 +34,8 @@ const request = async (
 };
 
 function Editor() {
-  const [requestContent, setRequestContent] = useState('query {}');
+  const query = useAppSelector((state) => state.queryState.value);
+  const dispatch = useAppDispatch();
   const [response, setResponse] = useState('');
   const [headersContent, setHeadersContent] = useState('');
   const [variablesContent, setVariablesContent] = useState('');
@@ -41,7 +44,7 @@ function Editor() {
   const handleRequest = async () => {
     setLoading(true);
     try {
-      const data = await request(requestContent, variablesContent, headersContent);
+      const data = await request(query, variablesContent, headersContent);
       setResponse(data);
     } catch (e) {
       const { message } = e as Error;
@@ -58,11 +61,11 @@ function Editor() {
           <div className="request_area">
             <CodeMirror
               theme={githubLight}
-              value={requestContent}
+              value={query}
               height="100%"
               width="100%"
               extensions={[graphql()]}
-              onChange={(value) => setRequestContent(value)}
+              onChange={(value) => dispatch(setQuery(value))}
             />
           </div>
           <IconButton className="requestBtn" onClick={handleRequest}>
