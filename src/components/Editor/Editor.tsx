@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Editor.scss';
 import CodeMirror from '@uiw/react-codemirror';
+import { graphql } from 'cm6-graphql';
+import { githubLight } from '@uiw/codemirror-theme-github';
 import { IconButton } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Subquest from '../Subquest/Subquest';
@@ -55,9 +57,11 @@ function Editor() {
         <div className="request">
           <div className="request_area">
             <CodeMirror
+              theme={githubLight}
               value={requestContent}
               height="100%"
               width="100%"
+              extensions={[graphql()]}
               onChange={(value) => setRequestContent(value)}
             />
           </div>
