@@ -14,7 +14,7 @@ interface Props {
 
 function Response(props: Props) {
   const { response, loading } = props;
-  const query = useAppSelector((state) => state.responseState.value);
+  const resp = useAppSelector((state) => state.responseState.resp);
   const dispatch = useAppDispatch();
 
   return loading ? (
@@ -23,7 +23,7 @@ function Response(props: Props) {
     <section className="response">
       <CodeMirror
         theme={githubLight}
-        value={response ? JSON.stringify(response, null, '\t') : query}
+        value={response ? JSON.stringify(response, null, '\t') : resp}
         height="100%"
         width="100%"
         readOnly

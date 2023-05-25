@@ -3,11 +3,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 const responseSlice = createSlice({
   name: 'response',
   initialState: {
-    value: '',
+    resp: '',
   },
   reducers: {
     setResponse(state, action: PayloadAction<string>) {
-      state.value = action.payload;
+      state.resp = action.payload;
     },
   },
 });
