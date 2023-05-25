@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Editor.scss';
 import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
@@ -36,26 +36,21 @@ const request = async (
 };
 
 function Editor() {
-  const query = useAppSelector((state) => state.queryState.value);
   const dispatch = useAppDispatch();
-  // const [response, setResponse] = useState('');
-  const [headersContent, setHeadersContent] = useState('');
-  const [variablesContent, setVariablesContent] = useState('');// ?
-  // const [loading, setLoading] = useState(false);
+
+  const query = useAppSelector((state) => state.queryState.value);
+  const headersContent = useAppSelector((state) => state.headersState.headers);
+  const variablesContent = useAppSelector((state) => state.variableState.variables);
 
   const handleRequest = async () => {
-    // setLoading(true);
     dispatch(setLoading(true));
     try {
       const data = await request(query, variablesContent, headersContent);
-      // setResponse(data);
       dispatch(setResponse(data));
     } catch (e) {
       const { message } = e as Error;
-      // setResponse(message);
       dispatch(setResponse(message));
     }
-    // setLoading(false);
     dispatch(setLoading(false));
   };
 
@@ -82,14 +77,8 @@ function Editor() {
             />
           </IconButton>
         </div>
-        <Subquest
-          headersContent={headersContent}
-          setHeadersContent={setHeadersContent}
-          variablesContent={variablesContent}
-          setVariablesContent={setVariablesContent}
-        />
+        <Subquest />
       </div>
-      {/* <Response response={response} /> */}
       <Response />
     </section>
   );

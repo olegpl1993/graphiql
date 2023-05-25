@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import './Subquest.scss';
 import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
@@ -7,21 +7,17 @@ import { Button, IconButton } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useAppSelector, useAppDispatch } from '../../hook';
-import { setVariable } from '../../store/variableSlice';
+import { setVariables } from '../../store/variablesSlice';
 import text from '../../language/Language';
+import { setHeaders } from '../../store/headersSlice';
 
-interface Props {
-  headersContent: string;
-  setHeadersContent: Dispatch<SetStateAction<string>>;
-  variablesContent: string;
-  setVariablesContent: Dispatch<SetStateAction<string>>;
-}
-
-function Subquest(props: Props) {
-  const { headersContent, setHeadersContent, variablesContent, setVariablesContent } = props;
-  const lang = useAppSelector((state) => state.langState.lang);
-  const variable = useAppSelector((state) => state.variableState.variable);
+function Subquest() {
   const dispatch = useAppDispatch();
+
+  const lang = useAppSelector((state) => state.langState.lang);
+  const variablesContent = useAppSelector((state) => state.variableState.variables);
+  const headersContent = useAppSelector((state) => state.headersState.headers);
+
   const [headersVariables, setHeadersVariables] = useState(false);
   const handleHeaders = () => {
     setHeadersVariables(true);
@@ -62,18 +58,16 @@ function Subquest(props: Props) {
             height="100%"
             width="100%"
             extensions={[graphql()]}
-            onChange={(value) => setHeadersContent(value)}
+            onChange={(value) => dispatch(setHeaders(value))}
           />
         ) : (
           <CodeMirror
             theme={githubLight}
-            // value={variablesContent}
-            value={variable}
+            value={variablesContent}
             height="100%"
             width="100%"
             extensions={[graphql()]}
-            // onChange={(value) => setVariablesContent(value)}
-            onChange={(value) => dispatch(setVariable(value))}
+            onChange={(value) => dispatch(setVariables(value))}
           />
         )}
       </div>
