@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import './Docs.scss';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton } from '@mui/material';
-import RenderDocs from 'create-graphql-docs/RenderDocs';
+// import RenderDocs from 'create-graphql-docs/RenderDocs';
+import Spinner from '../Spinner/Spinner';
 
 const url = 'https://rickandmortyapi.com/graphql';
+const RenderDocs = lazy(() => import('create-graphql-docs/RenderDocs'));
 
 function Docs() {
   const [isOpenDocs, setOpenDocs] = useState(false);
@@ -26,7 +28,9 @@ function Docs() {
       {isOpenDocs && (
         <div className="docsText">
           <div className="docsBox">
-            <RenderDocs url={url} />
+            <Suspense fallback={<Spinner />}>
+              <RenderDocs url={url} />
+            </Suspense>
           </div>
         </div>
       )}
