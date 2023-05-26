@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Subquest.scss';
 import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
@@ -10,6 +10,8 @@ import { useAppSelector, useAppDispatch } from '../../hook';
 import { setVariables } from '../../store/variablesSlice';
 import text from '../../language/Language';
 import { setHeaders } from '../../store/headersSlice';
+import { setOpenSubquest } from '../../store/openSubquestSlice';
+import { setHeadersVariables } from '../../store/headersVariablesSlice';
 
 function Subquest() {
   const dispatch = useAppDispatch();
@@ -18,17 +20,17 @@ function Subquest() {
   const variablesContent = useAppSelector((state) => state.variableState.variables);
   const headersContent = useAppSelector((state) => state.headersState.headers);
 
-  const [headersVariables, setHeadersVariables] = useState(false);
+  const headersVariables = useAppSelector((state) => state.headersVariablesState.headersVariables);
   const handleHeaders = () => {
-    setHeadersVariables(true);
+    dispatch(setHeadersVariables(true));
   };
   const handleVariables = () => {
-    setHeadersVariables(false);
+    dispatch(setHeadersVariables(false));
   };
 
-  const [isOpenSubquest, setOpenSubquest] = useState(false);
+  const isOpenSubquest = useAppSelector((state) => state.openSubquestState.openSubquest);
   const handleOpenSubquest = () => {
-    setOpenSubquest(!isOpenSubquest);
+    dispatch(setOpenSubquest(!isOpenSubquest));
   };
 
   return (
