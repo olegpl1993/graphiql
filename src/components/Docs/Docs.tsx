@@ -2,7 +2,6 @@ import React, { useState, Suspense, lazy } from 'react';
 import './Docs.scss';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton } from '@mui/material';
-// import RenderDocs from 'create-graphql-docs/RenderDocs';
 import Spinner from '../Spinner/Spinner';
 
 const url = 'https://rickandmortyapi.com/graphql';
