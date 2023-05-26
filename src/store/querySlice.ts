@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 const querySlice = createSlice({
   name: 'query',
   initialState: {
-    value: 'query() {}',
+    value: 'query {}',
   },
   reducers: {
     setQuery(state, action: PayloadAction<string>) {
