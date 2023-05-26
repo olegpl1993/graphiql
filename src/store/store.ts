@@ -7,6 +7,7 @@ import responseReducer from './responseSlice';
 import variableReducer from './variablesSlice';
 import loadingReducer from './loadingSlice';
 import headersReducer from './headersSlice';
+import openDocsReducer from './openDocsSlice';
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     variableState: variableReducer,
     loadingState: loadingReducer,
     headersState: headersReducer,
+    openDocsState: openDocsReducer,
   },
 });
 
