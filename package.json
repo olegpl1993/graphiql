@@ -19,7 +19,7 @@
     "@uiw/react-codemirror": "^4.19.16",
     "@vitejs/plugin-react": "^3.1.0",
     "cm6-graphql": "^0.0.5",
-    "create-graphql-docs": "^0.0.7",
+    "create-graphql-docs": "^0.0.8",
     "firebase": "^9.21.0",
     "graphql": "^16.6.0",
     "react": "^18.2.0",

@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hook';
 import { setOpenDocs } from '../../store/openDocsSlice';
 
 const url = 'https://rickandmortyapi.com/graphql';
-const RenderDocs = lazy(() => import('create-graphql-docs/RenderDocs'));
+const RenderDocs = lazy(() => import('create-graphql-docs/Docs'));
 
 function Docs() {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ function Docs() {
   };
 
   return (
-    <section className="docs">
+    <section className="docs-wrapper">
       <div className="btnRow">
         <IconButton className="docsOpenBtn" onClick={handleOpenDocs}>
           {isOpenDocs ? (
