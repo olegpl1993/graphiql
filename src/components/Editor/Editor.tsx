@@ -3,8 +3,8 @@ import './Editor.scss';
 import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
 import { githubLight } from '@uiw/codemirror-theme-github';
-import { IconButton } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import { Box, IconButton, TextField } from '@mui/material';
 import Subquest from '../Subquest/Subquest';
 import Response from '../Response/Response';
 import Docs from '../Docs/Docs';
@@ -12,28 +12,8 @@ import { useAppDispatch, useAppSelector } from '../../hook';
 import { setQuery } from '../../store/querySlice';
 import { setLoading } from '../../store/loadingSlice';
 import { setResponse } from '../../store/responseSlice';
-
-const url = 'https://rickandmortyapi.com/graphql';
-
-const request = async (
-  requestContent: string,
-  variablesContent: string,
-  headersContent: string
-): Promise<string> => {
-  const variables = variablesContent ? { ...JSON.parse(variablesContent) } : {};
-  const headers = headersContent
-    ? { ...JSON.parse(headersContent), 'Content-type': 'application/json' }
-    : { 'Content-type': 'application/json' };
-  const res = await fetch(url, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      query: requestContent,
-      variables,
-    }),
-  });
-  return res.json();
-};
+import { setUrl } from '../../store/urlSlice';
+import request from './request';
 
 function Editor() {
   const dispatch = useAppDispatch();
@@ -41,11 +21,12 @@ function Editor() {
   const query = useAppSelector((state) => state.queryState.value);
   const headersContent = useAppSelector((state) => state.headersState.headers);
   const variablesContent = useAppSelector((state) => state.variableState.variables);
+  const url = useAppSelector((state) => state.urlState.url);
 
   const handleRequest = async () => {
     dispatch(setLoading(true));
     try {
-      const data = await request(query, variablesContent, headersContent);
+      const data = await request(query, variablesContent, headersContent, url);
       dispatch(setResponse(data));
     } catch (e) {
       const { message } = e as Error;
@@ -56,9 +37,35 @@ function Editor() {
 
   return (
     <section className="editor">
-      <Docs />
+      <Docs url={url} />
       <div className="wrapper">
         <div className="request">
+          <div className="request_row">
+            <IconButton className="requestBtn" onClick={handleRequest}>
+              <PlayCircleIcon
+                className="requestIcon"
+                fontSize="large"
+                sx={{ color: 'rgb(255, 0, 187)' }}
+              />
+            </IconButton>
+
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { width: '240px' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="standard-basic"
+                value={url}
+                variant="standard"
+                onChange={(e) => dispatch(setUrl(e.target.value))}
+              />
+            </Box>
+          </div>
+
           <div className="request_area">
             <CodeMirror
               theme={githubLight}
@@ -69,13 +76,6 @@ function Editor() {
               onChange={(value) => dispatch(setQuery(value))}
             />
           </div>
-          <IconButton className="requestBtn" onClick={handleRequest}>
-            <PlayCircleIcon
-              className="requestIcon"
-              fontSize="large"
-              sx={{ color: 'rgb(255, 0, 187)' }}
-            />
-          </IconButton>
         </div>
         <Subquest />
       </div>

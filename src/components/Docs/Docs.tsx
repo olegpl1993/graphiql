@@ -6,10 +6,14 @@ import Spinner from '../Spinner/Spinner';
 import { useAppDispatch, useAppSelector } from '../../hook';
 import { setOpenDocs } from '../../store/openDocsSlice';
 
-const url = 'https://rickandmortyapi.com/graphql';
 const RenderDocs = lazy(() => import('create-graphql-docs/Docs'));
 
-function Docs() {
+interface Props {
+  url: string;
+}
+
+function Docs(props: Props) {
+  const { url } = props;
   const dispatch = useAppDispatch();
   const isOpenDocs = useAppSelector((state) => state.openDocsState.openDocs);
   const handleOpenDocs = () => {

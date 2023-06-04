@@ -10,6 +10,7 @@ import headersReducer from './headersSlice';
 import openDocsReducer from './openDocsSlice';
 import openSubquestReducer from './openSubquestSlice';
 import headersVariablesReducer from './headersVariablesSlice';
+import urlReducer from './urlSlice';
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     openDocsState: openDocsReducer,
     openSubquestState: openSubquestReducer,
     headersVariablesState: headersVariablesReducer,
+    urlState: urlReducer,
   },
 });
 
