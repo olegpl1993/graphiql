@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+  min-height: 100px;
+  transition: 0.7s ease;
+  border-bottom: 1px solid rgb(202, 200, 200);
+  background-color: white;
+
+  &._scroll {
+    min-height: 60px;
+    background-color: rgb(237, 237, 237);
+  }
+
+  .leftBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(255, 0, 187);
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    font-size: 20px;
+  }
+
+  .rightBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}
